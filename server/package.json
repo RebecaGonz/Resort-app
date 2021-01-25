@@ -1,11 +1,18 @@
 {
+<<<<<<< HEAD
   "name": "Resort-app",
   "version": "1.0.0",
   "description": "Project to create a hotel booking page\r members: Retchiele, Niharika, Rebeca.",
+=======
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+>>>>>>> devNicky
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+<<<<<<< HEAD
   "repository": {
     "type": "git",
     "url": "git+https://github.com/RebecaGonz/Resort-app.git"
@@ -22,5 +29,13 @@
     "express": "^4.17.1",
     "mongoose": "^5.11.13",
     "react-icons": "^4.1.0"
+=======
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.11.13"
+>>>>>>> devNicky
   }
 }

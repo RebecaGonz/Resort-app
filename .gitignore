@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 .history/
 client/.eslintcache
 node_modules
 
+=======
+.history
+node_module
+>>>>>>> devNicky
