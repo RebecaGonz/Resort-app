@@ -1,3 +1,7 @@
 # Resort-app
 Page for hotel booking
-members: Retchiele , Niharika, Rebeca
+members:Michael ,Retchiele , Niharika, Rebeca
+
+Page for book a room from an hotel
+USER REGISTRATION
+Chat with custome service.
