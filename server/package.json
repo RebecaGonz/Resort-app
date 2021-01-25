@@ -1,26 +1,20 @@
 {
-  "name": "Resort-app",
+
+  "name": "server",
   "version": "1.0.0",
-  "description": "Project to create a hotel booking page\r members: Retchiele, Niharika, Rebeca.",
+  "description": "",
+
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/RebecaGonz/Resort-app.git"
-  },
+
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/RebecaGonz/Resort-app/issues"
-  },
-  "homepage": "https://github.com/RebecaGonz/Resort-app#readme",
   "dependencies": {
-    "@reach/router": "^1.3.4",
     "express": "^4.17.1",
-    "mongoose": "^5.11.13",
-    "react-icons": "^4.1.0"
+    "mongoose": "^5.11.13"
+
   }
 }
