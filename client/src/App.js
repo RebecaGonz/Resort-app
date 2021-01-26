@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import Main from './views/Main'
 import Rooms from './views/Rooms'
@@ -10,11 +10,11 @@ function App() {
     return (
         <div className="App">
             <Router>
-            <Redirect from='/' to ='home' noThrow/>
-            <Main path="/home"/>
-            <Rooms path="/home/rooms"/>
-            <SingleRoom path="/home/singleRooms"/>
-            <Error path="/home/error"/>
+                <Redirect from='/' to='home' noThrow />
+                <Main path="/home" />
+                <Rooms path="/rooms" />
+                <SingleRoom path="/home/singleRooms" />
+                <Error path="/home/error" />
             </Router>
         </div>
     );

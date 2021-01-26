@@ -4,7 +4,7 @@ import Hero from '../components/Hero'
 import RoomsFeat from '../components/RoomsFeat'
 import {FaCocktail, FaHiking, FaShuttleVan, FaBeer} from 'react-icons/fa'
 import styles from '../components/index.module.css'
-import background from '../components/images/resort.JPG';
+import backGround from '../components/images/resort.JPG';
 
 function Main() {
     const [services, setServices]= useState({
@@ -36,7 +36,8 @@ function Main() {
     return (
         <div className={styles.serviceBack}>
             <NavBar/>
-            <Hero back = {background}/>
+            <Hero back={backGround} title="Luxurius Rooms" desc="Deluxe Room starting at $200" btnText="Our Rooms" btnTo="/rooms" />
+
             <div>
                 <h1 className={styles.title}>Services</h1>
                 <div className={styles.heroLine}></div>
