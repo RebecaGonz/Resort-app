@@ -1,2 +1,8 @@
+<<<<<<< HEAD
 .history/
 node_module/
+=======
+.history
+node_module
+client/.eslintcache
+>>>>>>> c458169080cdd2d917a07cc735ebfb213ecb9f73
