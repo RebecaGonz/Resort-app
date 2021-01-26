@@ -1,49 +1,57 @@
 import React, { useState } from 'react'
 import NavBar from '../components/NavBar'
 import Hero from '../components/Hero'
+import RoomsFeat from '../components/RoomsFeat'
 import {FaCocktail, FaHiking, FaShuttleVan, FaBeer} from 'react-icons/fa'
 import styles from '../components/index.module.css'
 import backGround from '../components/images/resort.JPG';
-
 
 function Main() {
     const [services, setServices]= useState({
         services:[
             {
                 icon: <FaCocktail />,
-                title: "free cocktails",
+                title: "Happy Ours ",
                 info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
             },
             {
                 icon: <FaHiking />,
-                title: "free cocktails",
+                title: "Hiking places",
                 info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
             },
             {
                 icon: <FaShuttleVan />,
-                title: "free cocktails",
+                title: "Free Shuttles",
                 info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
             },
             {
                 icon: <FaBeer/>,
-                title: "free cocktails",
+                title: "Best Beer",
                 info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
             }
         ]
     })
+    console.log(services)
 
     return (
-        <div>
+        <div className={styles.serviceBack}>
             <NavBar/>
             <Hero back={backGround} title="Luxurius Rooms" desc="Deluxe Room starting at $200" btnText="Our Rooms" btnTo="/rooms" />
+
             <div>
-                <h1>Services</h1>
+                <h1 className={styles.title}>Services</h1>
                 <div className={styles.heroLine}></div>
-                <div>
-                    <div>
-                    </div>
+                <div className = {styles.allServices}>
+                        {services.services.map((item,idx) =>
+                        <div className = {styles.serviceItems}>
+                            <p key ={idx}> {item.icon}</p>
+                            <p> {item.title}</p>
+                            <p> {item.info}</p>
+                        </div>
+                        )}
                 </div>
             </div>
+            <RoomsFeat/>
         </div>
     )
 }

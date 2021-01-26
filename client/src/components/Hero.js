@@ -8,6 +8,8 @@ function Hero(props) {
     
     return (
         <div className={styles.heroImage} style={{ backgroundImage : `url(${back})` }}>
+
+
             <div className={styles.heroBox}>
                 <h1 className={styles.heroTitle }>{ title }</h1>
                 <div className={styles.heroLine}></div>
