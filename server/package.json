@@ -1,5 +1,6 @@
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
   "name": "Resort-app",
   "version": "1.0.0",
   "description": "Project to create a hotel booking page\r members: Retchiele, Niharika, Rebeca.",
@@ -8,10 +9,18 @@
   "version": "1.0.0",
   "description": "",
 >>>>>>> devNicky
+=======
+
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+
+>>>>>>> 2eb6fdfea1db9502429773e6c0409f7560dd2e55
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+<<<<<<< HEAD
 <<<<<<< HEAD
   "repository": {
     "type": "git",
@@ -30,12 +39,19 @@
     "mongoose": "^5.11.13",
     "react-icons": "^4.1.0"
 =======
+=======
+
+>>>>>>> 2eb6fdfea1db9502429773e6c0409f7560dd2e55
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
     "mongoose": "^5.11.13"
+<<<<<<< HEAD
 >>>>>>> devNicky
+=======
+
+>>>>>>> 2eb6fdfea1db9502429773e6c0409f7560dd2e55
   }
 }
