@@ -110,7 +110,7 @@
 
 /*  Code for component Hero.js  */
 .heroImage {
-    background-image: url("./images/resort.JPG");
+    /* background-image: url("./images/resort.JPG"); */
     height: 500px;
     background-position: center;
     background-repeat: no-repeat;
@@ -160,3 +160,37 @@
 }
 
 /* end of Hero  */
+
+/*  Code for component Main.js  */
+
+.title{
+    color: var(--mainBlack)
+}
+.serviceBack{
+    background-color: var(--mainGrey);
+}
+.allServices{
+    display:flex;
+}
+
+.serviceItems p:first-child {
+    font-size: 20px;
+    color: var(--primaryColor);
+}
+.serviceItems p:nth-child(2) {
+    font-size: 20px;
+    font-weight:400;
+}
+.serviceItems p:nth-child(3) {
+    padding: 10px;
+    text-align: center;
+}
+/* end of Main  */
+
+.stylesBack{
+    background-color: var(--offWhite);
+}
+.allRooms{
+    display:flex;
+    justify-content: space-evenly;
+}

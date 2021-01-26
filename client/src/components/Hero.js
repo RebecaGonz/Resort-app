@@ -1,9 +1,13 @@
 import React from 'react'
 import styles from './index.module.css'
 
-function Hero() {
+
+function Hero(props) {
+    var {back} = props
+
+
     return (
-        <div className={styles.heroImage}>
+        <div className={styles.heroImage} style={{ backgroundImage: `url(${back})` }}>
             <div className={styles.heroBox}>
                 <h1 className={styles.heroTitle }>Luxurius Rooms</h1>
                 <div className={styles.heroLine}></div>
