@@ -110,7 +110,7 @@
 
 /*  Code for component Hero.js  */
 .heroImage {
-    background-image: url("./images/resort.JPG");
+    /* background-image: url("./images/resort.JPG"); */
     height: 500px;
     background-position: center;
     background-repeat: no-repeat;
