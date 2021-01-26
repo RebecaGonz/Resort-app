@@ -1,10 +1,162 @@
-.navbar{
-    position: fixed;
-    top:0;
-    left:0;
+/* Create Variables for color so we can use same color in all pages */
+:root {
+    --primaryColor: #af9a7d;
+    --mainWhite: #fff;
+    --offWhite: #f7f7f7;
+    --mainBlack: #222;
+    --mainGrey: #ececec;
+    --darkGrey: #cfcfcf;
+    --mainTransition: all 0.3s linear;
+    --mainSpacing: 3px;
+    --lightShadow: 2px 5px 3px 0px rgba(0, 0, 0, 0.5);
+    --darkShadow: 4px 10px 5px 0px rgba(0, 0, 0, 0.5);
+}
+
+/*  Code for component NavBar.js  */
+.navbar {
+    top: 0;
+    left: 0;
     width: 100%;
-    padding:  0.75rem 2rem;
-    background-color: red;
+    padding: 0.75rem 2rem;
+    background: var(--offWhite);
     z-index: 1;
 }
-/* name for page  */
+.navHeader {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.navBtn {
+    display: none;
+}
+
+.navCenter{
+    display: flex;
+}
+
+.navLinks {
+    height: auto;
+    display: flex;
+    margin-left: 4rem;
+    list-style-type: none;
+}
+.navLinks a {
+    margin: 0 1rem;
+    padding: 0.5rem 0;
+    text-decoration: none;
+    padding: 1rem 0;
+    color: var(--mainBlack);
+    transition: var(--mainTransition);
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: var(--mainSpacing);
+}
+.navLinks a:hover {
+    color: var(--primaryColor);
+}
+
+@media (max-width: 768px) {
+
+    .navBtn{
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        margin-left: 10px;
+        display: block;
+        position:fixed;
+        right: 10px;
+    }
+
+    .navHeader {
+        justify-content: flex-end;
+    }
+    .navIcon {
+        font-size: 1.5rem;
+        color: var(--primaryColor);
+    }
+    .navLinks {
+        display:none;
+        flex-direction: column;
+    }
+
+    .navShow{
+        display: block;
+        height: auto;
+        display: flex;
+        margin-left: 4rem;
+        list-style-type: none;
+        flex-direction: column;
+    }
+
+    .navShow a{
+        margin: 0 1rem;
+        padding: 0.5rem 0;
+        text-decoration: none;
+        padding: 1rem 0;
+        color: var(--mainBlack);
+        transition: var(--mainTransition);
+        text-align: center;
+        font-size: 1rem;
+        font-weight: 600;
+        letter-spacing: var(--mainSpacing);
+    }
+    .navShow a:hover {
+        color: var(--primaryColor);
+    }
+}
+/* end of navbar  */
+
+/*  Code for component Hero.js  */
+.heroImage {
+    background-image: url("./images/resort.JPG");
+    height: 500px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.heroBox{
+    border: 2px solid var(--mainWhite);
+    width: 550px;
+    height: 200px;
+    background: rgba(0, 0, 0, 0.6);
+
+}
+
+.heroTitle {
+    color: var(--mainWhite);
+    text-align: center;
+    letter-spacing: var(--mainSpacing);
+}
+
+.heroLine{
+    width: 95px;
+    height: 3px;
+    background: var(--primaryColor);
+    margin: 1rem auto;
+}
+
+.heroDesc{
+    color: var(--mainWhite);
+    text-align: center;
+    letter-spacing: var(--mainSpacing);
+}
+.heroBtn{
+    color: var(--mainWhite);
+    background-color: var(--primaryColor);
+    border: none;
+    height: 32px;
+    cursor: pointer;
+}
+.heroBtn:hover {
+    color: var(--mainBlack);
+    transition: var(--mainTransition);
+}
+
+/* end of Hero  */
