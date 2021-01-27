@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema({
-    
+
     //User also has the field of _id, which is automatically created upon generation.
 
     reservations: [{
@@ -14,7 +14,7 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: [true, "Please enter a first name"],
     },
-    
+
     last_name: {
         type: String,
         required: [true, "Please enter a last name"],
