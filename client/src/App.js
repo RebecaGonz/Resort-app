@@ -5,6 +5,7 @@ import Rooms from './views/Rooms'
 import SingleRoom from './views/SingleRoom'
 import Error from './views/Error'
 import { Router, Redirect } from '@reach/router';
+import Register from './components/Register'
 
 function App() {
     return (
@@ -15,6 +16,7 @@ function App() {
                 <Rooms path="/rooms" />
                 <SingleRoom path="/home/singleRooms" />
                 <Error path="/home/error" />
+                <Register path="/register" />
             </Router>
         </div>
     );
