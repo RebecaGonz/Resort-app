@@ -1,10 +1,20 @@
 const mongoose = require('mongoose');
 
 const RoomSchema = new mongoose.Schema({
+    
+    //Room also has the field of _id, which is automatically created upon generation.
+
+    reservations: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Reservation",
+        required: [false],
+    }],
+
     room_number: {
         type: Number,
         required: [true, "Please enter a valid room number between 1-999"],
     },
+        //NOTE: Room number is the "name" for the room. This is different from the longer and more complicated _id specified above.
 
     type: {
         type: String,
