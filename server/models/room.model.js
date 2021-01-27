@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const RoomSchema = new mongoose.Schema({
-    
+
     //Room also has the field of _id, which is automatically created upon generation.
 
     reservations: [{
@@ -87,13 +87,13 @@ const RoomSchema = new mongoose.Schema({
     },
 
     featured_image: {
-        type: string,
+        type: String,
         required: [true, "Please write the url for a large image to be featured for this room."]
     },
 
     //Optional: An array of strings containing additional images of the room.
     gallery_images: {
-        type: array,
+        type: Array,
         required: [false]
     },
 
