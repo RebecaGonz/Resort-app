@@ -37,7 +37,6 @@ function Main() {
         <div className={styles.serviceBack}>
             <NavBar/>
             <Hero back={backGround} title="Luxurius Rooms" desc="Deluxe Room starting at $200" btnText="Our Rooms" btnTo="/rooms" />
-
             <div>
                 <h1 className={styles.title}>Services</h1>
                 <div className={styles.heroLine}></div>
