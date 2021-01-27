@@ -187,6 +187,8 @@
 }
 /* end of Main  */
 
+/*  Code for component RoomFeat.js  */
+
 .stylesBack{
     background-color: var(--offWhite);
 }
@@ -242,3 +244,71 @@
 .info h6 {
     font-weight: 300;
 }
+
+}
+
+.eachRoom{
+    border: 1px solid black;
+    width: 230px;
+    height: 150px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.priceTop{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.8);
+    color: var(--mainWhite);
+    padding: 0.3rem 0.6rem 0.5rem;
+    border-bottom-right-radius: 1rem;
+    font-size: 15px;
+    text-align: center;
+}
+
+.roomName{
+    background: var(--darkGrey);
+    text-transform: capitalize;
+    padding: 0.5rem 0;
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: var(--mainSpacing);
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+
+.roomLink{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    align-items: center;
+    height: 120px;
+    display: none;
+}
+
+.eachRoom:hover .roomLink{
+    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    align-items: center;
+    height: 120px;
+    background: rgba(175, 154, 125, 0.5);
+}
+
+.linkText{
+    color: var(--offWhite);
+    padding:7px;
+    text-decoration: none;
+    background-color: var(--primaryColor);
+}
+
+.eachRoom:hover{
+    background-size: cover;
+}
+
+/* end of RoomFeat  */
