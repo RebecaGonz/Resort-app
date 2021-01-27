@@ -19,21 +19,21 @@ function RoomsFeat(props) {
                     <div className={styles.priceTop}>price</div>
                     <div className={styles.roomName}>Room Name</div>
                     <div className={styles.roomLink}>
-                        <Link  className={styles.linkText} to = "/rooms">Details</Link>
+                        <Link  className={styles.linkText} to = "/home/singleRooms">Details</Link>
                     </div>
                 </div>
                 <div style={{ backgroundImage : `url(${backGround})` }}  className={styles.eachRoom}>
                     <div className={styles.priceTop}>price</div>
                     <div className={styles.roomName}>Room Name</div>
                     <div className={styles.roomLink}>
-                        <Link  className={styles.linkText} to = "/rooms">Details</Link>
+                        <Link  className={styles.linkText} to = "/home/singleRooms">Details</Link>
                     </div>
                 </div>
                 <div style={{ backgroundImage : `url(${backGround})` }}  className={styles.eachRoom}>
                     <div className={styles.priceTop}>price</div>
                     <div className={styles.roomName}>Room Name</div>
                     <div className={styles.roomLink}>
-                        <Link  className={styles.linkText} to = "/rooms">Details</Link>
+                        <Link  className={styles.linkText} to = "/home/singleRooms">Details</Link>
                     </div>
                 </div>
             </div>
