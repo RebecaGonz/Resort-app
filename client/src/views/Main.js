@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import NavBar from '../components/NavBar'
 import Hero from '../components/Hero'
 import RoomsFeat from '../components/RoomsFeat'
@@ -7,8 +7,7 @@ import styles from '../components/index.module.css'
 import backGround from '../components/images/resort.JPG';
 
 function Main() {
-    const [services, setServices]= useState({
-        services:[
+    const services = [
             {
                 icon: <FaCocktail />,
                 title: "Happy Ours ",
@@ -29,20 +28,22 @@ function Main() {
                 title: "Best Beer",
                 info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
             }
-        ]
-    })
+        ];
     console.log(services)
-
     return (
         <div className={styles.serviceBack}>
             <NavBar/>
-            <Hero back={backGround} title="Luxurius Rooms" desc="Deluxe Room starting at $200" btnText="Our Rooms" btnTo="/rooms" />
-
+            <Hero back={backGround}
+                title="Luxurius Rooms"
+                desc="Deluxe Room starting at $200"
+                btnText="Our Rooms"
+                btnTo="/rooms"
+            />
             <div>
                 <h1 className={styles.title}>Services</h1>
                 <div className={styles.heroLine}></div>
                 <div className = {styles.allServices}>
-                        {services.services.map((item,idx) =>
+                        {services.map((item,idx) =>
                         <div className = {styles.serviceItems}>
                             <p key ={idx}> {item.icon}</p>
                             <p> {item.title}</p>
