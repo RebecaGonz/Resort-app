@@ -1,9 +1,5 @@
 /* Create Variables for color so we can use same color in all pages */
 
-.test{
-    width: 1000px;
-}
-
 :root {
     --primaryColor: #af9a7d;
     --mainWhite: #fff;
