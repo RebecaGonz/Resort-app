@@ -6,19 +6,19 @@ const ReservationSchema = new mongoose.Schema({
 
     //ONE-TO-MANY: A reservation is connected to a user and a room.
     user_id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User"
+        type: String,
+        required: [true, "Please enter a specific user ID that the reservation will be placed under."],
     },
 
     room_id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Room"
+        type: String,
+        required: [true, "Please enter a specific user ID that the reservation will be placed under."]
     },
 
     //We need a way to check that this is a valid date. We need to also tell the user the correct way to enter the date.
     date: {
         type: Date,
-        required: [true, "Please enter today's date or a future date for the reservation."],
+        required: [false, "Please enter today's date or a future date for the reservation."],
     },
 
     adult_rsvps: {

@@ -5,8 +5,7 @@ const RoomSchema = new mongoose.Schema({
     //Room also has the field of _id, which is automatically created upon generation.
 
     reservations: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Reservation",
+        type: String,
         required: [false],
     }],
 
@@ -69,11 +68,6 @@ const RoomSchema = new mongoose.Schema({
     parking_included: {
         type: Boolean,
         required: [true, "Enter 'true' or 'false' for whether parking is included or not."]
-    },
-
-    smoking: {
-        type: Boolean,
-        required: [true, "Enter 'true' or 'false' for whether smoking is allowed in the room."]
     },
 
     smoking: {

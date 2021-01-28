@@ -1,30 +1,30 @@
 const User = require('../models/user.model')
 
-module.exports.getAllUsers = (_request, response) => {
+module.exports.findAll = (_request, response) => {
     User.find()
         .then(data => response.json({allRooms: data}))
         .catch(error => response.json({error: error}))
 }
 
-module.exports.createUser = (request, response) => {
+module.exports.create = (request, response) => {
     User.create(request.body)
         .then(data => response.json(data))
         .catch(error => response.status(400).json(error))
 }
 
-module.exports.getOneUser = (request, response) => {
+module.exports.findOne = (request, response) => {
     User.findById(request.params.id)
         .then(data => response.json(data))
         .catch(error => response.json({error: error}))
 }
 
-module.exports.deleteUser = (request, response) => {
+module.exports.deleteOne = (request, response) => {
     User.findByIdAndDelete(request.params.id)
         .then(() => response.json({success: true}))
         .catch(error => response.status(400).json(error))
 }
 
-module.exports.updateUser = (request, response) => {
+module.exports.updateOne = (request, response) => {
     User.findByIdAndUpdate(
         request.params.id,
         request.body,

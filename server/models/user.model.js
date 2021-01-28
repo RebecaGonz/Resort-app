@@ -3,10 +3,10 @@ const mongoose = require('mongoose');
 const UserSchema = new mongoose.Schema({
 
     //User also has the field of _id, which is automatically created upon generation.
+    //Add the reservation ID to the reservation field.
 
     reservations: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Reservation",
+        type: String,
         required: [false],
     }],
 
@@ -32,7 +32,7 @@ const UserSchema = new mongoose.Schema({
 
     admin: {
         type: Boolean,
-        required: [true, "please write 'true' or 'false' whether the user is an adminstrator or not."],
+        required: [false, "please write 'true' or 'false' whether the user is an adminstrator or not."],
     },
 
 }, {timestamps: true});
