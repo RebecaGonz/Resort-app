@@ -2,7 +2,7 @@ const User = require('../models/user.model')
 
 module.exports.findAll = (_request, response) => {
     User.find()
-        .then(data => response.json({allRooms: data}))
+        .then(data => response.json({all_users: data}))
         .catch(error => response.json({error: error}))
 }
 
@@ -29,6 +29,14 @@ module.exports.updateOne = (request, response) => {
         request.params.id,
         request.body,
         {new: true, runValidators: true}
+        )
+        .then(updatedUser => response.json(updatedUser))
+        .catch(error => response.status(400).json(error))
+}
+
+module.exports.pushOne = (request, response) => {
+    User.findByIdAndUpdate( request.params.id, request.body,
+        {new: true, runValidators: true}, {$push: {reservations: request}}
         )
         .then(updatedUser => response.json(updatedUser))
         .catch(error => response.status(400).json(error))

@@ -1,7 +1,7 @@
-const roomController = require('../controller/room.controller');
-const reservationController = require('../controller/reservation.controller');
-const userController = require('../controller/user.controller');
-const registerController = require('../controller/login.controller');
+const roomController = require('../controllers/room.controller');
+const reservationController = require('../controllers/reservation.controller');
+const userController = require('../controllers/user.controller');
+const registerController = require('../controllers/login.controller');
 
 module.exports = function(app) {
 
@@ -16,30 +16,16 @@ module.exports = function(app) {
     app.post('/user/create', userController.create);
     app.get('/user/findOne/:id', userController.findOne);
     app.delete('/user/deleteOne/:id', userController.deleteOne);
-    app.post('/user/updateOne/:id', userController.updateOne);
+    app.put('/user/updateOne/:id', userController.updateOne);
 
 // Reservation Table Routes
     app.get('/reservation/findAll', reservationController.findAll);
     app.post('/reservation/create', reservationController.create);
     app.get('/reservation/findOne/:id', reservationController.findOne);
     app.delete('/reservation/deleteOne/:id', reservationController.deleteOne);
-    app.post('/reservation/updateOne/:id', reservationController.updateOne);
+    app.put('/reservation/updateOne/:id', reservationController.updateOne);
 
-    //Login Table Routes
-    app.post('/register', registerController.createUser);
+//Login Table Routes
+app.post('/register', registerController.createUser);
 
-    
-//User Table Routes
-//     app.get('/user/findAll', userController.getAll);
-//     app.post('/user/create', userController.create);
-//     app.get('/user/findOne', userController.findOne);
-//     app.delete('/user/deleteOne', userController.deleteOne);
-//     app.post('/user/updateOne', userController.updateOne);
-
-// //Reservation Table Routes
-//     app.get('/reservation/findAll', reservationController.getAll);
-//     app.post('/reservation/create', reservationController.create);
-//     app.get('/reservation/findOne', reservationController.findOne);
-//     app.delete('/reservation/deleteOne', reservationController.deleteOne);
-//     app.post('/reservation/updateOne', reservationController.updateOne);
 };

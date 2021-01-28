@@ -27,7 +27,7 @@ const ReservationSchema = new mongoose.Schema({
     },
 
     //This needs to be linked to reservations model.
-    children_rsvps: {
+    child_rsvps: {
         type: Number,
         required: [true, "Please enter the number of child reservations."],
     },
