@@ -1,11 +1,13 @@
-const express = require('express');
-const cors = require('cors')
+const express = require("express");
 const app = express();
-const port = 8000;
-require('./config/mongoose.config');
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(cors())
-require('./routes/resort_routes')(app);
+const cors = require('cors');
 
-app.listen(port, () => console.log(`Listening on port: ${port}`) );
+require("./config/mongoose.config");
+
+app.use(express.json(), express.urlencoded({ extended: true }));
+app.use(cors());
+
+const AllMyResortRoutes = require("./routes/resort_routes");
+AllMyResortRoutes(app);
+
+app.listen(8000, () => console.log("The server is all fired up on port 8000"));
