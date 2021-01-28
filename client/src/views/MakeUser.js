@@ -9,19 +9,25 @@ import { Link } from '@reach/router';
 //In the actual website, user_id should automatically come from session.
 //Room should be selectable by name. On change, we can query the api for the corresponding ID to the name.
 
-
-function MakeReservation(){
-    const [user_id, setUser_Id] = useState('');
-    const [room_id, setRoom_Id] = useState('');
-    const [adult_rsvps, setAdult_Rsvps] = useState(0);
-    const [child_rsvps, setChild_Rsvps] = useState(0);
+function MakeUser(){
+    const [first_name,setFirst_Name] = useState('');
+    const [last_name, setLast_Name] = useState('');
+    const [cell_number, setCell_Number] = useState('###-###-####');
+    const [email, setEmail] = useState('@email.com');
+    const [admin, setAdmin] = useState('false');
     const [validationErrors, setValidationErrors] = useState([]);
 
 
     function handleSubmit(event) {
         event.preventDefault();
-        axios.post('http://localhost:8000/reservation/create',
-            {user_id, room_id, adult_rsvps, child_rsvps})
+        axios.post('http://localhost:8000/user/create',
+            {
+                first_name, 
+                last_name, 
+                cell_number, 
+                email,
+                admin
+            })
             .then(response => {
                 console.log(response);
             })
@@ -39,40 +45,40 @@ function MakeReservation(){
 return(
     <>
         <div>
-            <h1>Make a Reservation</h1>
+            <h1>Make a User</h1>
             <Link to={"/"}>Back to Home</Link>
         </div>
         <h2>All fields are required.</h2>
         <div>
             <form onSubmit = {handleSubmit}>
-                <label>User ID</label>
+                <label>First Name</label>
                 <input
                     type = "String"
-                    value = {user_id}
-                    onChange = {event => setUser_Id(event.target.value)} 
+                    value = {first_name}
+                    onChange = {event => setFirst_Name(event.target.value)} 
                 />
                 <br></br>
-                <label>Room ID</label>
+                <label>Last Name</label>
                 <input
                     type = "String"
-                    value = {room_id}
-                    onChange = {event => setRoom_Id(event.target.value)} 
+                    value = {last_name}
+                    onChange = {event => setLast_Name(event.target.value)} 
                 />
                 <br></br>
-                <label>Adult RSVPs</label>
+                <label>Cell Number</label>
                 <input
-                    type = "Number"
-                    value = {adult_rsvps}
-                    onChange = {event => setAdult_Rsvps(event.target.value)} 
+                    type = "String"
+                    value = {cell_number}
+                    onChange = {event => setCell_Number(event.target.value)} 
                 />
                 <br></br>
-                <label>Child RSVPs:</label>
+                <label>Email:</label>
                 <input
-                    type = "Number"
-                    value = {child_rsvps}
-                    onChange = {event => setChild_Rsvps(event.target.value)} 
+                    type = "String"
+                    value = {email}
+                    onChange = {event => setEmail(event.target.value)} 
                 />
-                <button>Make Reservation</button>
+                <button>Make User</button>
             </form>
         </div>
         <div>
@@ -88,4 +94,4 @@ return(
 )
 }
 
-export default MakeReservation;
+export default MakeUser;
