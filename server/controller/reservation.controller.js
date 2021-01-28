@@ -2,7 +2,7 @@ const Reservation = require('../models/reservation.model')
 
 module.exports.findAll = (_request, response) => {
     Reservation.find()
-        .then(data => response.json({allRooms: data}))
+        .then(data => response.json({all_reservations: data}))
         .catch(error => response.json({error: error}))
 }
 

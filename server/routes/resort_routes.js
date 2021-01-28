@@ -10,20 +10,20 @@ module.exports = function(app){
     app.post('/room/create', roomController.create);
     app.get('/room/findOne/:id', roomController.findOne);
     app.delete('/room/deleteOne/:id', roomController.deleteOne);
-    app.post('/room/updateOne/:id', roomController.updateOne);
+    app.put('/room/updateOne/:id', roomController.updateOne);
 // User Table Routes
     app.get('/user/findAll', userController.findAll);
     app.post('/user/create', userController.create);
     app.get('/user/findOne/:id', userController.findOne);
     app.delete('/user/deleteOne/:id', userController.deleteOne);
-    app.post('/user/updateOne/:id', userController.updateOne);
+    app.put('/user/updateOne/:id', userController.updateOne);
 
 // Reservation Table Routes
     app.get('/reservation/findAll', reservationController.findAll);
     app.post('/reservation/create', reservationController.create);
     app.get('/reservation/findOne/:id', reservationController.findOne);
     app.delete('/reservation/deleteOne/:id', reservationController.deleteOne);
-    app.post('/reservation/updateOne/:id', reservationController.updateOne);
+    app.put('/reservation/updateOne/:id', reservationController.updateOne);
 
 //Login Table Routes
     app.post('/register', registerController.createUser);

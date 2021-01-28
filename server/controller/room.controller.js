@@ -3,7 +3,7 @@ const Room = require('../models/room.model')
 
 module.exports.findAll = (_request, response) => {
     Room.find()
-        .then(data => response.json({allRooms: data}))
+        .then(data => response.json({all_rooms: data}))
         .catch(error => response.json({error: error}))
 }
 
