@@ -1,7 +1,7 @@
-const roomController = require('../controller/room.controller');
-const reservationController = require('../controller/reservation.controller');
-const userController = require('../controller/user.controller');
-const registerController = require('../controller/login.controller');
+const roomController = require('../controllers/room.controller');
+const reservationController = require('../controllers/reservation.controller');
+const userController = require('../controllers/user.controller');
+const registerController = require('../controllers/login.controller');
 
 module.exports = function(app) {
 
