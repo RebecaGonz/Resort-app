@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './index.module.css';
-import backGround from './images/resort.JPG';
+// import backGround from './images/resort.JPG';
 import { Link } from '@reach/router';
 
 function Hero(props) {
@@ -8,10 +8,8 @@ function Hero(props) {
     
     return (
         <div className={styles.heroImage} style={{ backgroundImage : `url(${back})` }}>
-
-
             <div className={styles.heroBox}>
-                <h1 className={styles.heroTitle }>{ title }</h1>
+                <h1 className={styles.heroTitle }>{ title } Room</h1>
                 <div className={styles.heroLine}></div>
                 <p className={styles.heroDesc}>{ desc }</p>
                 <Link to={btnTo} className={styles.heroBtn} >{ btnText }</Link>
@@ -19,5 +17,4 @@ function Hero(props) {
         </div>
     )
 }
-
 export default Hero

@@ -14,7 +14,7 @@ function App() {
                 <Redirect from='/' to='home' noThrow />
                 <Main path="/home" />
                 <Rooms path="/rooms" />
-                <SingleRoom path="/home/singleRooms" />
+                <SingleRoom path="/home/singleRooms/:id" />
                 <Error path="/home/error" />
                 <Register path="/register" />
             </Router>
