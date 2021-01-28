@@ -1,30 +1,30 @@
 const Reservation = require('../models/reservation.model')
 
-module.exports.getAllReservations = (_request, response) => {
+module.exports.findAll = (_request, response) => {
     Reservation.find()
         .then(data => response.json({allRooms: data}))
         .catch(error => response.json({error: error}))
 }
 
-module.exports.createReservation = (request, response) => {
+module.exports.create = (request, response) => {
     Reservation.create(request.body)
         .then(data => response.json(data))
         .catch(error => response.status(400).json(error))
 }
 
-module.exports.getOneReservation = (request, response) => {
+module.exports.findOne = (request, response) => {
     Reservation.findById(request.params.id)
         .then(data => response.json(data))
         .catch(error => response.json({error: error}))
 }
 
-module.exports.deleteReservation = (request, response) => {
+module.exports.deleteOne = (request, response) => {
     Reservation.findByIdAndDelete(request.params.id)
         .then(() => response.json({success: true}))
         .catch(error => response.status(400).json(error))
 }
 
-module.exports.updateReservation = (request, response) => {
+module.exports.updateOne = (request, response) => {
     Reservation.findByIdAndUpdate(
         request.params.id,
         request.body,
