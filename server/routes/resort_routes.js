@@ -1,6 +1,7 @@
 const roomController = require('../controller/room.controller');
 const reservationController = require('../controller/reservation.controller');
 const userController = require('../controller/user.controller');
+const registerController = require('../controller/login.controller');
 
 module.exports = function(app){
 
@@ -23,4 +24,7 @@ module.exports = function(app){
     app.get('/reservation/findOne', reservationController.getOneReservation);
     app.delete('/reservation/deleteOne', reservationController.deleteReservation);
     app.post('/reservation/updateOne', reservationController.updateReservation);
+
+//Login Table Routes
+    app.post('/register', registerController.createUser);
 }
