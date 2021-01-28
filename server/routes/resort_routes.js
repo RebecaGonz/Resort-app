@@ -7,9 +7,9 @@ module.exports = function(app) {
 //Room Table Routes
     app.get('/room/findAll', roomController.findAll);
     app.post('/room/create', roomController.create);
-    app.get('/room/findOne', roomController.findOne);
-    app.delete('/room/deleteOne', roomController.deleteOne);
-    app.post('/room/updateOne', roomController.updateOne);
+    app.get('/room/findOne/:id', roomController.findOne);
+    app.delete('/room/deleteOne/:id', roomController.deleteOne);
+    app.put('/room/updateOne/:id', roomController.updateOne);
 //User Table Routes
 //     app.get('/user/findAll', userController.getAll);
 //     app.post('/user/create', userController.create);

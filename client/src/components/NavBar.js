@@ -10,7 +10,7 @@ function NavBar() {
     const handleToggle = () => {
         setOpen(!isOpen);
     }
-    console.log(isOpen);
+    // console.log(isOpen);
 
     return (
         <div>
@@ -32,7 +32,7 @@ function NavBar() {
                             <Link to = "/rooms">Rooms</Link>
                         </li>
                         <li>
-                            <Link to = "/register"><img src={userIcon} height="25px" width="25px"></img></Link>
+                            <Link to = "/register"><img src={userIcon} height="25px" width="25px" alt="" ></img></Link>
                         </li>
                     </ul>
                 </div>
