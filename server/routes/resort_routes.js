@@ -25,21 +25,7 @@ module.exports = function(app) {
     app.delete('/reservation/deleteOne/:id', reservationController.deleteOne);
     app.put('/reservation/updateOne/:id', reservationController.updateOne);
 
-    //Login Table Routes
-    app.post('/register', registerController.createUser);
+//Login Table Routes
+app.post('/register', registerController.createUser);
 
-    
-//User Table Routes
-//     app.get('/user/findAll', userController.getAll);
-//     app.post('/user/create', userController.create);
-//     app.get('/user/findOne', userController.findOne);
-//     app.delete('/user/deleteOne', userController.deleteOne);
-//     app.post('/user/updateOne', userController.updateOne);
-
-// //Reservation Table Routes
-//     app.get('/reservation/findAll', reservationController.getAll);
-//     app.post('/reservation/create', reservationController.create);
-//     app.get('/reservation/findOne', reservationController.findOne);
-//     app.delete('/reservation/deleteOne', reservationController.deleteOne);
-//     app.post('/reservation/updateOne', reservationController.updateOne);
 };
