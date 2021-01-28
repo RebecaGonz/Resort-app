@@ -3,11 +3,15 @@ import axios from 'axios';
 import styles from '../components/index.module.css';
 import NavBar from '../components/NavBar';
 import Hero from '../components/Hero';
-import backGround from '../components/images/familyRoom.jpg';
-import roomImg from '../components/images/roomDetail.jpg';
+// import backGround from '../components/images/familyRoom.jpg';
+// import roomImg from '../components/images/roomDetail.jpg';
 function SingleRoom(props) {
     const { id } = props;
     const [rooms, setRooms] = useState(null);
+    const extraList = ["Plush pillows and breathable bed linens", "Soft, oversized bath towels", 
+                        "Full-sized, pH-balanced toiletries", "Complimentary refreshments", "Adequate safety/security",
+                        "Internet", "Comfortable beds"
+                    ]
     useEffect(() => {
         axios.get('http://localhost:8000/room/findOne/' + id)
             .then(res => setRooms(res.data))
@@ -21,6 +25,7 @@ function SingleRoom(props) {
     }
     else {
         const gal_img = rooms.gallery_images;
+        console.log("**** ",gal_img);
         return (
             <div className={styles.serviceBack}>
                 <NavBar />
@@ -33,11 +38,9 @@ function SingleRoom(props) {
                 <div className={styles.singleRoom}>
                     <div className={styles.singleRoomImages}>
                         {
-                            gal_img.map((item, idx) => {
-                                // console.log("item ",item);
-                                <h1>hello</h1>
-                                // <img src={ backGround } alt="" />
-                            })
+                            gal_img.map((item, idx) => 
+                                <img key={idx} src={ item } alt="" />
+                            )
                         }
                     </div>
                     <div className={styles.singleRoomInfo}>
@@ -58,9 +61,22 @@ function SingleRoom(props) {
                             {
                                 (rooms.breakfast_included) ? <h5>free breakfast</h5> : <h5>breakfast not included</h5>
                             }
+                            {
+                                (rooms.parking_included) ? <h5>parking included</h5> : <h5>parking not included</h5>
+                            }
                         </div>
                     </div>
-                </div><br></br>
+                </div>
+                <div className={styles.roomExtras}>
+                    <h2>extras</h2>
+                    <ul>
+                        {
+                            extraList.map((item, idx) => (
+                                <li>- {item}</li>
+                            ))
+                        }
+                    </ul>
+                </div>
             </div>
         )
     }
