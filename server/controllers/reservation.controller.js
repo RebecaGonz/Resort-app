@@ -1,30 +1,52 @@
 const Reservation = require('../models/reservation.model')
+const User = require('../models/user.model')
+const Room = require('../models/room.model')
 
-module.exports.getAllReservations = (_request, response) => {
+module.exports.findAll = (_request, response) => {
     Reservation.find()
-        .then(data => response.json({allRooms: data}))
+        .then(data => response.json({all_reservations: data}))
         .catch(error => response.json({error: error}))
 }
 
-module.exports.createReservation = (request, response) => {
-    Reservation.create(request.body)
-        .then(data => response.json(data))
-        .catch(error => response.status(400).json(error))
+module.exports.create = async (request, response) => {
+    try{
+        const newReservation = {
+            user_id: request.body.user_id,
+            room_id: request.body.room_id,
+            // date: request.body.date,
+            adult_rsvps: request.body.adult_rsvps,
+            child_rsvps: request.body.child_rsvps,
+        }
+        
+        //Await queues this into a new thread.
+        const reservation = await Reservation.create
+        (newReservation)
+
+        //Waits for the reservation to be done, because we need that data.
+        await User.updateOne({_id : request.body.user_id}, {$push: {reservations: reservation._id}});
+
+        await Room.updateOne({_id : request.body.room_id}, {$push: {reservations: reservation._id}});
+
+        return response.json(reservation)
+    }
+    catch(err){
+        res.status(400).json(err);
+    }
 }
 
-module.exports.getOneReservation = (request, response) => {
+module.exports.findOne = (request, response) => {
     Reservation.findById(request.params.id)
         .then(data => response.json(data))
         .catch(error => response.json({error: error}))
 }
 
-module.exports.deleteReservation = (request, response) => {
+module.exports.deleteOne = (request, response) => {
     Reservation.findByIdAndDelete(request.params.id)
         .then(() => response.json({success: true}))
         .catch(error => response.status(400).json(error))
 }
 
-module.exports.updateReservation = (request, response) => {
+module.exports.updateOne = (request, response) => {
     Reservation.findByIdAndUpdate(
         request.params.id,
         request.body,

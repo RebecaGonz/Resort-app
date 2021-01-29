@@ -1,12 +1,11 @@
 const mongoose = require('mongoose');
 
 const RoomSchema = new mongoose.Schema({
-    
+
     //Room also has the field of _id, which is automatically created upon generation.
 
     reservations: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Reservation",
+        type: String,
         required: [false],
     }],
 
