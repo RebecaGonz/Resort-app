@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+var cors = require('cors')
 // const port = 8000;
 const mongoUri = "mongodb://localhost/resort_db";
 
@@ -58,7 +59,7 @@ app.use(
 require('./config/mongoose.config');
 // app.use(express.json());
 // app.use(express.urlencoded({ extended: true }));
-app.use(cors())
+app.use(cors());
 require('./routes/resort_routes')(app);
 require('./routes/user')(app);
 

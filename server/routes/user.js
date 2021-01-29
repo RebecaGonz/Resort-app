@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const { loginUser, logoutUser, authChecker } = require("../controller/login.controller");
-const registerController = require('../controller/login.controller');
+const { loginUser, logoutUser, authChecker } = require("../controllers/login.controller");
+const registerController = require('../controllers/login.controller');
 
 
 module.exports = function(app){
