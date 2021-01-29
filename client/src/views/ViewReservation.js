@@ -16,7 +16,6 @@ function ViewReservation() {
             .catch(err => console.log(err));
     }, []);
 
-
     return (
         <div className={styles.serviceBack}>
             <NavBar />
