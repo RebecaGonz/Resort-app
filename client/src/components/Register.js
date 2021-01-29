@@ -9,8 +9,8 @@ import {navigate} from '@reach/router';
 
 function Register() {
     const [errors, setErrors] = useState([]);
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName]= useState("");
+    const [first_name, setFirstName] = useState("");
+    const [last_name, setLastName]= useState("");
     const [number, setNumber] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -19,8 +19,8 @@ function Register() {
     const registerUser = (e) => {
         e.preventDefault();
         axios.post('http://localhost:8000/register', {
-            firstName,
-            lastName,
+            first_name,
+            last_name,
             number,
             email,
             password,
