@@ -184,7 +184,7 @@ return(
                     value = {gallery_images}
                     onChange = {event => setGallery_Images(event.target.value)} 
                 />
-                <button>Make Reservation</button>
+                <button>Make Room</button>
             </form>
         </div>
         <div>

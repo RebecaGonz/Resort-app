@@ -13,7 +13,7 @@ module.exports.create = async (request, response) => {
         const newReservation = {
             user_id: request.body.user_id,
             room_id: request.body.room_id,
-            // date: request.body.date,
+            date: request.body.date,
             adult_rsvps: request.body.adult_rsvps,
             child_rsvps: request.body.child_rsvps,
         }
@@ -25,7 +25,7 @@ module.exports.create = async (request, response) => {
         //Waits for the reservation to be done, because we need that data.
         await User.updateOne({_id : request.body.user_id}, {$push: {reservations: reservation._id}});
 
-        await Room.updateOne({_id : request.body.room_id}, {$push: {reservations: reservation._id}});
+        await Room.updateOne({_id : request.body.room_id}, {$push: {reservations: reservation._id, dates_in_use: reservation.date}});
 
         return response.json(reservation)
     }

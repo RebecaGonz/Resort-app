@@ -11,6 +11,7 @@ module.exports = function(app) {
     app.get('/room/findOne/:id', roomController.findOne);
     app.delete('/room/deleteOne/:id', roomController.deleteOne);
     app.put('/room/updateOne/:id', roomController.updateOne);
+    
 // User Table Routes
     app.post('/register', userController.createUser);
     app.post("/login", userController.loginUser);
@@ -27,5 +28,3 @@ module.exports = function(app) {
     app.get('/reservation/findOne/:id', reservationController.findOne);
     app.delete('/reservation/deleteOne/:id', reservationController.deleteOne);
     app.put('/reservation/updateOne/:id', reservationController.updateOne);
-
-};
