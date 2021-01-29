@@ -2,7 +2,7 @@ import { Link } from '@reach/router';
 import React, { useState } from 'react'
 import styles from './index.module.css'
 import { FaAlignRight } from "react-icons/fa"
-// import { FaUserCircle } from "react-icons/fa"
+import { FaUserCircle } from "react-icons/fa"
 import axios from 'axios';
 // import Login from '../components/Login';
 import { navigate } from '@reach/router';
@@ -63,7 +63,8 @@ function NavBar() {
                             <Link to="/rooms">Rooms</Link>
                         </li>
                         <li>
-                            <img onClick={showList} src={userIcon} height="25px" width="25px" alt=""></img>
+                            <FaUserCircle onClick={showList} className={styles.userIcon}></FaUserCircle>
+                            {/* <img onClick={showList} src={userIcon} height="25px" width="25px" alt=""></img> */}
                             <p style={{ position: "absolute", height: "25px", margin: '5px', display: 'inline-block' }}>{userName}</p>
                             <div id="loginList" style={{ display: 'none' }}>
                                 <ul style={{listStyleType : "none"}}>

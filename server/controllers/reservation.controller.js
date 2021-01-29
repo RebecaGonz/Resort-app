@@ -32,16 +32,21 @@ module.exports.create = async (request, response) => {
     }
 }
 
-module.exports.findOne = (request, response) => {
-    Reservation.findById(request.params.id)
-        .then(data => response.json(data))
-        .catch(error => response.json({error: error}))
-}
-
 module.exports.deleteOne = (request, response) => {
     Reservation.findByIdAndDelete(request.params.id)
         .then(() => response.json({success: true}))
         .catch(error => response.status(400).json(error))
+}
+// module.exports.deleteOne = (request, response) => {
+//     Reservation.findByIdAndDelete(request.params.id)
+//         .then(() => response.json({success: true}))
+//         .catch(error => response.status(400).json(error))
+// }
+
+module.exports.findOne = (request, response) => {
+    Reservation.findById(request.params.id)
+        .then(data => response.json(data))
+        .catch(error => response.json({error: error}))
 }
 
 module.exports.updateOne = (request, response) => {

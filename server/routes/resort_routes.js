@@ -27,5 +27,7 @@ module.exports = function(app) {
     app.post('/reservation/create', reservationController.create);
     app.get('/reservation/findOne/:id', reservationController.findOne);
     app.delete('/reservation/deleteOne/:id', reservationController.deleteOne);
+    // app.delete('/reservation/deleteOne/:resId/:roomId/:userId', reservationController.deleteOne);
     app.put('/reservation/updateOne/:id', reservationController.updateOne);
-    app.get('/reservation/user', reservationController.findByUser)
+    app.get('/reservation/user', reservationController.findByUser);
+}
