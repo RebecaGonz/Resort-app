@@ -6,11 +6,14 @@ import userIcon from './images/userIcon.png'
 
 function NavBar() {
     const [isOpen, setOpen] = useState(false);
+    const userName = localStorage.getItem("userName");
 
     const handleToggle = () => {
         setOpen(!isOpen);
     }
     console.log(isOpen);
+
+
 
     return (
         <div>
@@ -33,6 +36,7 @@ function NavBar() {
                         </li>
                         <li>
                             <Link to = "/register"><img src={userIcon} height="25px" width="25px"></img></Link>
+                            <p>{userName}</p>
                         </li>
                     </ul>
                 </div>
