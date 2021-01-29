@@ -11,6 +11,7 @@ function Register() {
     const [errors, setErrors] = useState([]);
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName]= useState("");
+    const [number, setNumber] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("")
@@ -20,6 +21,7 @@ function Register() {
         axios.post('http://localhost:8000/register', {
             firstName,
             lastName,
+            number,
             email,
             password,
             confirmPassword
@@ -47,6 +49,7 @@ function Register() {
                     <form onSubmit={registerUser} className={styles.register}>
                         <input type="text" placeholder="First Name" onChange={(e) =>setFirstName(e.target.value)} />
                         <input type="text" placeholder="Last Name" onChange={(e) =>setLastName(e.target.value)}/>
+                        <input type="text" placeholder="Cell Number/ optional" onChange={(e) =>setNumber(e.target.value)}/>
                         <input type="text" placeholder="Email" onChange={(e) =>setEmail(e.target.value)}/>
                         <input type="text" placeholder="Password" onChange={(e) =>setPassword(e.target.value)} />
                         <input type="text" placeholder="Confirm Password" onChange={(e) =>setConfirmPassword(e.target.value)}/>

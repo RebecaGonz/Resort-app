@@ -61,7 +61,7 @@ require('./config/mongoose.config');
 // app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 require('./routes/resort_routes')(app);
-require('./routes/user')(app);
+// require('./routes/user')(app);
 
 app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
 // app.listen(port, () => console.log(`Listening on port: ${port}`));

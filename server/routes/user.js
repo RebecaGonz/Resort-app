@@ -1,15 +1,15 @@
-const express = require("express");
-const router = express.Router();
-const { loginUser, logoutUser, authChecker } = require("../controllers/login.controller");
-const registerController = require('../controllers/login.controller');
+// const express = require("express");
+// const router = express.Router();
+// const { loginUser, logoutUser, authChecker } = require("../controllers/login.controller");
+// const registerController = require('../controllers/login.controller');
 
 
-module.exports = function(app){
-    app.post("/login", registerController.loginUser);
-    app.get('/all', registerController.findAll);
-    app.delete("/logout", registerController.logoutUser);
-    app.get('/authchecker', registerController.authChecker);
-}
+// module.exports = function(app){
+//     app.post("/login", registerController.loginUser);
+//     app.get('/all', registerController.findAll);
+//     app.delete("/logout", registerController.logoutUser);
+//     app.get('/authchecker', registerController.authChecker);
+// }
 
 
 // Logs In a User, creates session in mongo store

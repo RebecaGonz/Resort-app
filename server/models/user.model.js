@@ -28,6 +28,16 @@ const UserSchema = new mongoose.Schema({
     email: {
         type: String,
         required: [true, "Please enter a valid email"],
+        validate: {
+            validator: val => /^([\w-\.]+@([\w-]+\.)+[\w-]+)?$/.test(val),
+            message: "Please enter a valid email"
+        }
+    },
+
+    password: {
+        type: String,
+        required: [true, "Password is required"],
+        minlength: [8, "Password must be 8 characters or longer"]
     },
 
     admin: {
@@ -36,6 +46,27 @@ const UserSchema = new mongoose.Schema({
     },
 
 }, {timestamps: true});
+
+UserSchema.virtual('confirmPassword')
+    .get(() => this._confirmPassword)
+    .set(value => this._confirmPassword = value);
+
+UserSchema.pre('validate', function (next) {
+    if (this.password !== this.confirmPassword) {
+        this.invalidate('confirmPassword', 'Password must match confirm password');
+    }
+    next();
+});
+
+const bcrypt = require('bcrypt');
+
+UserSchema.pre('save', function (next) {
+    bcrypt.hash(this.password, 10)
+        .then(hash => {
+            this.password = hash;
+            next();
+        });
+});
 
 const User = mongoose.model('User', UserSchema)
 
