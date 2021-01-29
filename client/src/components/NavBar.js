@@ -7,7 +7,6 @@ import axios from 'axios';
 import Login from '../components/Login';
 import { navigate } from '@reach/router';
 import userIcon from './images/userIcon.png'
-// import logo from './images/mernresort.png'
 
 
 function NavBar() {
