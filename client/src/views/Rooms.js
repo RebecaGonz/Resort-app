@@ -20,7 +20,6 @@ function Rooms() {
         )
     }
     else {
-        console.log("every room",rooms);
         return (
             <div className={styles.serviceBack}>
                 <NavBar />

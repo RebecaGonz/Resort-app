@@ -1,8 +1,7 @@
 const User = require('../models/user.model')
 // const RegisterUser = require('../models/login.model')
-const express = require("express");
-const router = express.Router();
 const bcrypt = require("bcrypt");
+const { COOKIE_NAME } = require('../config/config');
 
 
 module.exports.createUser = (request, response) => {
@@ -11,20 +10,20 @@ module.exports.createUser = (request, response) => {
         .catch(error => response.status(400).json(error))
 }
 
-module.exports.findAll = (request, response ) => {
+module.exports.findAll = (request, response) => {
     User.find()
-        .then(data => response.json( data))
-        .catch(error => response.json({error: error}))
+        .then(data => response.json(data))
+        .catch(error => response.json({ error: error }))
 }
 module.exports.findOne = (request, response) => {
     User.findById(request.params.id)
         .then(data => response.json(data))
-        .catch(error => response.json({error: error}))
+        .catch(error => response.json({ error: error }))
 }
 
 module.exports.deleteOne = (request, response) => {
     User.findByIdAndDelete(request.params.id)
-        .then(() => response.json({success: true}))
+        .then(() => response.json({ success: true }))
         .catch(error => response.status(400).json(error))
 }
 
@@ -32,15 +31,15 @@ module.exports.updateOne = (request, response) => {
     User.findByIdAndUpdate(
         request.params.id,
         request.body,
-        {new: true, runValidators: true}
-        )
+        { new: true, runValidators: true }
+    )
         .then(updatedUser => response.json(updatedUser))
         .catch(error => response.status(400).json(error))
 }
 
-module.exports.isAuth = (req,res,next) => {
+module.exports.isAuth = (req, res, next) => {
     const sessUser = req.session.user;
-    if(sessUser) {
+    if (sessUser) {
         next();
     }
     else {
@@ -50,40 +49,38 @@ module.exports.isAuth = (req,res,next) => {
 };
 
 module.exports.loginUser = (req, res) => {
-    const { email, password  } = req.body;
+    const { email, password } = req.body;
 
     // basic validation
-    const result = User.validate({ email, password });
-    if (!result.error) {
-        //check for existing user
-        User.findOne({ email }).then((user) => {
-            if (!user) return res.status(400).json("Incorrect Email");
-
-            // Validate password
-            bcrypt.compare(password, user.password).then((isMatch) => {
-                if (!isMatch) return res.status(400).json("Incorrect Password");
-
-                const sessionUser = { id: user.id, name: `${user.first_name} ${user.last_name}`, email: user.email  };
-                req.session.user = sessionUser; // Auto saves session data in mongo store
-
-                res.json(sessionUser); // sends cookie with sessionID automatically in response
-            });
-        });
-    } else {
-        console.log(result.error)
+    const result = {}; //User.validate({ email, password });
+    if (result.error) {
         res.status(422).json(result.error.details[0].message);
+        return;
     }
+    //check for existing user
+    User.findOne({ email }).then((user) => {
+        if (!user) return res.status(400).json("Incorrect Email");
+
+        // Validate password
+        bcrypt.compare(password, user.password).then((isMatch) => {
+            if (!isMatch) return res.status(400).json("Incorrect Password");
+
+            res.setHeader('Access-Control-Allow-Credentials', 'true')
+            const sessionUser = { id: user.id, first_name: user.first_name, last_name: user.last_name, name: `${user.first_name} ${user.last_name}`, email: user.email };
+            req.session.user = sessionUser; // Auto saves session data in mongo store
+            res.json(sessionUser); // sends cookie with sessionID automatically in response
+        });
+    });
 };
 
 module.exports.logoutUser = (req, res) => {
     req.session.destroy((err) => {
         // delete session data from store, using sessionID in cookie
         if (err) throw err;
-        res.clearCookie("session-id"); // clears cookie containing expired sessionID
+        res.clearCookie(COOKIE_NAME); // clears cookie containing expired sessionID
         res.send("Logged out successfully");
     });
 }
-
 
 module.exports.authChecker = (req, res) => {
     const sessionUser = req.session.user;

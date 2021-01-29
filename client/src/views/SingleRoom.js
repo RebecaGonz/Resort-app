@@ -3,6 +3,7 @@ import axios from 'axios';
 import styles from '../components/index.module.css';
 import NavBar from '../components/NavBar';
 import Hero from '../components/Hero';
+import { navigate } from '@reach/router';
 // import backGround from '../components/images/familyRoom.jpg';
 // import roomImg from '../components/images/roomDetail.jpg';
 function SingleRoom(props) {
@@ -78,6 +79,8 @@ function SingleRoom(props) {
                         }
                     </ul>
                 </div>
+                <div><button className={styles.bookRoom} onClick={()=> navigate('/makereservation')}>Book a Room</button></div>
+                <br></br>
             </div>
         )
     }
