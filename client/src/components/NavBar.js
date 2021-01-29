@@ -11,7 +11,7 @@ function NavBar() {
     const handleToggle = () => {
         setOpen(!isOpen);
     }
-    console.log(isOpen);
+    // console.log(isOpen);
 
 
 

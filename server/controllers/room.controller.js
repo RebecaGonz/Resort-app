@@ -1,10 +1,10 @@
-const Room = require('../models/room.model')
+const { Room } = require('../models/room.model')
 
 
 module.exports.findAll = (_request, response) => {
     Room.find()
-        .then(data => response.json({allRooms: data}))
-        .catch(error => response.json({error: error}))
+        .then(data => response.json(data))
+        .catch(error => response.json({error}))
 }
 
 module.exports.create = (request, response) => {
@@ -26,8 +26,8 @@ module.exports.deleteOne = (request, response) => {
 }
 
 module.exports.updateOne = (request, response) => {
-    Room.findByIdAndUpdate(
-        request.params.id,
+    Room.findOneAndUpdate(
+        { _id : request.params.id },
         request.body,
         {new: true, runValidators: true}
         )
