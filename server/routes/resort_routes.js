@@ -29,4 +29,3 @@ module.exports = function(app) {
     app.delete('/reservation/deleteOne/:id', reservationController.deleteOne);
     app.put('/reservation/updateOne/:id', reservationController.updateOne);
     app.get('/reservation/user', reservationController.findByUser)
-}
