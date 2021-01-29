@@ -446,6 +446,17 @@
 .info h6 {
     font-weight: 300;
 }
+
+.bookRoom{
+    margin-top: 20px;
+    padding: 10px;
+    background-color:  #af9a7d;
+    color: white;
+    cursor: pointer;
+    border: none;
+    border-radius: 3px;
+}
+
 /* end of SingleRoom  */
 
 /* login and reg */

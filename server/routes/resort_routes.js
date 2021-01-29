@@ -28,4 +28,5 @@ module.exports = function(app) {
     app.get('/reservation/findOne/:id', reservationController.findOne);
     app.delete('/reservation/deleteOne/:id', reservationController.deleteOne);
     app.put('/reservation/updateOne/:id', reservationController.updateOne);
+    app.get('/reservation/user', reservationController.findByUser)
 }

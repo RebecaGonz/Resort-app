@@ -8,7 +8,7 @@ const mongoUri = "mongodb://localhost/resort_db";
 //packages being imported for use in the app
 const session = require("express-session");
 //allows mongodb to be used as a session store in the express-session middleware
-const MongoDBStore = require("connect-mongodb-session")(session);
+// const MongoDBStore = require("connect-mongodb-session")(session);
 // responsible for GET POST etc routes to our server
 const router = express.Router();
 const mongoose = require("mongoose");
@@ -24,42 +24,43 @@ const MAX_AGE = 1000 * 60 * 60 * 3; // Three hours
 
 // Connecting to Database
 mongoose.connect(mongoUri, {
-        useNewUrlParser: true,
-        useCreateIndex: true
-    })
+    useNewUrlParser: true,
+    useCreateIndex: true
+})
     .then(() => console.log("MongoDB connected..."))
     .catch((err) => console.log("Database error", err));
 
 // setting up connect-mongodb-session store
-const mongoStore = new MongoDBStore({
-    uri: mongoUri,
-    collection: "mySessions"
-});
+// const mongoStore = new MongoDBStore({
+//     uri: mongoUri,
+//     collection: "mySessions"
+// });
 
 // Express Bodyparser
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // Express-Session
-app.use(
-    session({
-        name: COOKIE_NAME, //name to be put in "key" field in postman etc
-        secret: SESS_SECRET,
-        resave: true,
-        saveUninitialized: false,
-        store: mongoStore,
-        cookie: {
-            maxAge: MAX_AGE,
-            sameSite: false,
-            secure: false
-        }
-    })
-);
+app.use(session({
+    name: COOKIE_NAME, //name to be put in "key" field in postman etc
+    secret: SESS_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    //store: mongoStore,
+    cookie: {
+        maxAge: MAX_AGE,
+        sameSite: false,
+        secure: false
+    }
+}));
 
-require('./config/mongoose.config');
+
+
+// require('./config/mongoose.config');
 // app.use(express.json());
 // app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+//app.use(cors());
+app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
 require('./routes/resort_routes')(app);
 // require('./routes/user')(app);
 
