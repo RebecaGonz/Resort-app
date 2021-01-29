@@ -9,13 +9,16 @@ import axios from 'axios';
 function ViewReservation() {
     const user_id = localStorage.getItem("userId");
     const [reservations, setReservations] = useState([]);
+    const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
         axios.get('http://localhost:8000/reservation/user', { params: { user_id } })
-            .then(response => setReservations(response.data))
+            .then(response => {
+                setReservations(response.data);
+                setLoaded(true);
+            })
             .catch(err => console.log(err));
     }, []);
-
 
     return (
         <div className={styles.serviceBack}>
@@ -27,7 +30,7 @@ function ViewReservation() {
                 btnTo="/rooms"
             />
             {
-                reservations.map(r => <Reserve reserveId={r._id} room={r.room_type} date={new Date(r.date)} adult={r.adult_rsvps} children={r.child_rsvps} />)
+                loaded && <Reserve reservations = {reservations} setReserve={setReservations} />
             }
         </div>
     )
