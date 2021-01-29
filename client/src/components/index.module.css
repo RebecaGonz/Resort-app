@@ -226,6 +226,7 @@
     width: 100%;
     display: block;
 }
+
 .desc, .info {
     margin: 1rem 0;
 }
@@ -276,6 +277,21 @@
     position: relative;
 }
 /* end of single room*/
+
+/* view reservation */
+.reservation {
+    /* padding: 5rem; */
+    width: 80vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 100px;
+    margin: 2rem auto;
+}
+.reservation h6, h3 {
+    text-align: left;
+}
+
+
 /* roomlist */
 .roomslist {
     padding: 5rem 0;

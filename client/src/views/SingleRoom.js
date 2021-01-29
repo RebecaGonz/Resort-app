@@ -24,13 +24,14 @@ function SingleRoom(props) {
         )
     }
     else {
+        const title = rooms.type + " Room";
         const gal_img = rooms.gallery_images;
         console.log("**** ",gal_img);
         return (
             <div className={styles.serviceBack}>
                 <NavBar />
                 <Hero back={rooms.featured_image}
-                    title={rooms.type}
+                    title={title}
                     desc=""
                     btnText="BACK TO ROOMS"
                     btnTo="/rooms"
