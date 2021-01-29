@@ -9,6 +9,11 @@ const RoomSchema = new mongoose.Schema({
         required: [false],
     }],
 
+    dates_in_use:[{
+        type: Date,
+        required: [false],
+    }],
+
     room_number: {
         type: Number,
         required: [true, "Please enter a valid room number between 1-999"],
@@ -93,6 +98,6 @@ const RoomSchema = new mongoose.Schema({
 
 }, {timestamps: true});
 
-module.exports.Room = mongoose.model('Room', RoomSchema)
+const Room = mongoose.model('Room', RoomSchema)
 
-// module.exports = Room;
+module.exports = Room;

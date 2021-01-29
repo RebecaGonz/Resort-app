@@ -1,4 +1,4 @@
-const { Room } = require('../models/room.model')
+const Room = require('../models/room.model')
 
 
 module.exports.findAll = (_request, response) => {
