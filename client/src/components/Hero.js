@@ -9,7 +9,7 @@ function Hero(props) {
     return (
         <div className={styles.heroImage} style={{ backgroundImage : `url(${back})` }}>
             <div className={styles.heroBox}>
-                <h1 className={styles.heroTitle }>{ title } Room</h1>
+                <h1 className={styles.heroTitle }>{ title }</h1>
                 <div className={styles.heroLine}></div>
                 <p className={styles.heroDesc}>{ desc }</p>
                 <Link to={btnTo} className={styles.heroBtn} >{ btnText }</Link>
