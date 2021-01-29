@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from '@reach/router';
 import styles from '../components/index.module.css'
-import backGround from '../components/images/room.jpg';
+// import backGround from '../components/images/room.jpg';
 
 
 function RoomsFeat(props) {

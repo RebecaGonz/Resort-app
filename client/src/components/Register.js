@@ -53,7 +53,7 @@ function Register() {
                         <input type="text" placeholder="Email" onChange={(e) =>setEmail(e.target.value)}/>
                         <input type="text" placeholder="Password" onChange={(e) =>setPassword(e.target.value)} />
                         <input type="text" placeholder="Confirm Password" onChange={(e) =>setConfirmPassword(e.target.value)}/>
-                        <input type="text" className={styles.logButton} type="submit" value="Create Account" />
+                        <input className={styles.logButton} type="submit" value="Create Account" />
                     </form>
                 </div>
                 <Login/>

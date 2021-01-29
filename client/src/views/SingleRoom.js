@@ -16,7 +16,7 @@ function SingleRoom(props) {
         axios.get('http://localhost:8000/room/findOne/' + id)
             .then(res => setRooms(res.data))
             .catch(err => console.log(err));
-    }, []);
+    }, [id]);
     console.log("all room", rooms);
     if (rooms === null) {
         return (

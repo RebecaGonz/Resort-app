@@ -2,9 +2,9 @@ import { Link } from '@reach/router';
 import React, { useState } from 'react'
 import styles from './index.module.css'
 import { FaAlignRight } from "react-icons/fa"
-import { FaUserCircle } from "react-icons/fa"
+// import { FaUserCircle } from "react-icons/fa"
 import axios from 'axios';
-import Login from '../components/Login';
+// import Login from '../components/Login';
 import { navigate } from '@reach/router';
 import userIcon from './images/userIcon.png'
 
@@ -13,7 +13,7 @@ function NavBar() {
     const [isOpen, setOpen] = useState(false);
     const [show, setShow] = useState(false);
     const userName = localStorage.getItem("userName");
-    const [errors, setErrors] = useState([]);
+    // const [errors, setErrors] = useState([]);
 
 
     const handleToggle = () => {
@@ -51,7 +51,7 @@ function NavBar() {
                 <div className={styles.navCenter}>
                     <div className={styles.navHeader}>
                         <Link to="/home">
-                            <img src=''  />
+                            <img src='' alt="" />
                         </Link>
                         <button type="button" className={styles.navBtn} onClick={handleToggle}>
                             <FaAlignRight className={styles.navIcon} />
@@ -65,7 +65,7 @@ function NavBar() {
                             <Link to="/rooms">Rooms</Link>
                         </li>
                         <li>
-                            <img onClick={showList} src={userIcon} height="25px" width="25px"></img>
+                            <img onClick={showList} src={userIcon} height="25px" width="25px" alt=""></img>
                             <p style={{ position: "absolute", height: "25px", margin: '5px', display: 'inline-block' }}>{userName}</p>
                             <div id="loginList" style={{ display: 'none' }}>
                                 <ul>
