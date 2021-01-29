@@ -7,6 +7,7 @@ import axios from 'axios';
 // import Login from '../components/Login';
 import { navigate } from '@reach/router';
 import userIcon from './images/userIcon.png'
+import hotelLogo from './images/hotel-symbol.png'
 
 
 function NavBar() {
@@ -14,7 +15,6 @@ function NavBar() {
     const [show, setShow] = useState(false);
     const userName = localStorage.getItem("userName");
     // const [errors, setErrors] = useState([]);
-
 
     const handleToggle = () => {
         setOpen(!isOpen);
@@ -32,7 +32,6 @@ function NavBar() {
         }
     }
 
-
     const logoutUser = (e) => {
         console.log("hizo click")
         e.preventDefault();
@@ -43,15 +42,13 @@ function NavBar() {
             })
     }
 
-
-
     return (
         <div>
             <nav className={styles.navbar}>
                 <div className={styles.navCenter}>
                     <div className={styles.navHeader}>
                         <Link to="/home">
-                            <img src='' alt="" />
+                            <img src={hotelLogo} height= "50px" width="100px" alt="hotel-logo" />
                         </Link>
                         <button type="button" className={styles.navBtn} onClick={handleToggle}>
                             <FaAlignRight className={styles.navIcon} />
@@ -68,7 +65,7 @@ function NavBar() {
                             <img onClick={showList} src={userIcon} height="25px" width="25px" alt=""></img>
                             <p style={{ position: "absolute", height: "25px", margin: '5px', display: 'inline-block' }}>{userName}</p>
                             <div id="loginList" style={{ display: 'none' }}>
-                                <ul>
+                                <ul style={{listStyleType : "none"}}>
                                     <li> <Link to="/register">Login</Link></li>
                                     <li onClick={logoutUser}><a> Logout</a></li>
                                 </ul>

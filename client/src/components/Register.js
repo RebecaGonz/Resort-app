@@ -28,16 +28,10 @@ function Register() {
         })
             .then(res => navigate('/home'))
             .catch(err =>{
-                const errorResponse = err.response.data.errors;
-                const errorArr =[];
-                for(const key of Object.keys(errorResponse)) {
-                    errorArr.push(errorResponse[key].message)
-                }
-                setErrors(errorArr)
+                console.log("****error*** ",err.response.data.errors);
+                setErrors(err.response.data.errors)
             })
     }
-
-
     return (
         <div>
             <NavBar />
@@ -45,13 +39,24 @@ function Register() {
             <div className={styles.flex}>
                 <div className={styles.registerdiv}>
                     <h3>Register</h3>
-                    {errors.map((err, index) => <p key={index} style={{color:'red'}}>{err}</p>)}
                     <form onSubmit={registerUser} className={styles.register}>
                         <input type="text" placeholder="First Name" onChange={(e) =>setFirstName(e.target.value)} />
+                        {
+                            errors.hasOwnProperty("first_name") ? <p style={{ color: 'red' }}> * {errors["first_name"].message} </p> : ""
+                        }
                         <input type="text" placeholder="Last Name" onChange={(e) =>setLastName(e.target.value)}/>
+                        {
+                            errors.hasOwnProperty("last_name") ? <p style={{ color: 'red' }}> * {errors["last_name"].message} </p> : ""
+                        }
                         <input type="text" placeholder="Cell Number/ optional" onChange={(e) =>setNumber(e.target.value)}/>
                         <input type="text" placeholder="Email" onChange={(e) =>setEmail(e.target.value)}/>
+                        {
+                            errors.hasOwnProperty("email") ? <p style={{ color: 'red' }}> * {errors["email"].message} </p> : ""
+                        }
                         <input type="text" placeholder="Password" onChange={(e) =>setPassword(e.target.value)} />
+                        {
+                            errors.hasOwnProperty("password") ? <p style={{ color: 'red' }}> * {errors["password"].message} </p> : ""
+                        }
                         <input type="text" placeholder="Confirm Password" onChange={(e) =>setConfirmPassword(e.target.value)}/>
                         <input className={styles.logButton} type="submit" value="Create Account" />
                     </form>
@@ -61,6 +66,5 @@ function Register() {
         </div>
     )
 }
-
 
 export default Register
