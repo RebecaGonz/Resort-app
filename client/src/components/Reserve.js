@@ -1,17 +1,9 @@
 import React from 'react';
 import styles from '../components/index.module.css';
-import axios from 'axios';
-import { navigate } from '@reach/router';
-// import { Link } from '@reach/router';
+import { Link } from '@reach/router';
 
 function Reserve(props) {
-    const { reserveId, room, date, adult, children, setReserve } = props;
-    function cancel_reservation(id) {
-        axios.delete('http://localhost:8000/reservation/deleteOne/' + id)
-            .then(() => navigate('/reservation'))
-            .catch(err => console.log(err));
-
-    }
+    const { reserveId, room, date, adult, children } = props;
     return (
         <div className={styles.reservation}>
                 <div>
@@ -22,7 +14,7 @@ function Reserve(props) {
                     <h6>Children: {children}</h6>
                 </div>
                 <div>
-                    <button className="btn btn-link" onClick={ () => {cancel_reservation(reserveId)} } >Free Cancelation</button>
+                    <Link to="cancel">Free Cancelation</Link>
                 </div>
             </div>
     )
