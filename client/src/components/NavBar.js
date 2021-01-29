@@ -9,7 +9,6 @@ import { navigate } from '@reach/router';
 import userIcon from './images/userIcon.png'
 
 
-
 function NavBar() {
     const [isOpen, setOpen] = useState(false);
     const [show, setShow] = useState(false);
