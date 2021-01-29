@@ -10,6 +10,7 @@ import userIcon from './images/userIcon.png'
 import hotelLogo from './images/hotel-symbol.png'
 
 
+
 function NavBar() {
     const [isOpen, setOpen] = useState(false);
     const [show, setShow] = useState(false);
