@@ -15,8 +15,9 @@ function Login() {
             email,
             password
         })
-            .then(res => {
-                localStorage.setItem("userName", res.data.name)
+            .then(res => { 
+                localStorage.setItem("userName", res.data.name);
+                localStorage.setItem("userId", res.data.id);
                 navigate('/home')
         })
             .catch(err =>{

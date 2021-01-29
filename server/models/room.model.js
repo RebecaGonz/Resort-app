@@ -9,7 +9,7 @@ const RoomSchema = new mongoose.Schema({
         required: [false],
     }],
 
-    dates_in_use:[{
+    dates_in_use: [{
         type: Date,
         required: [false],
     }],
@@ -18,7 +18,7 @@ const RoomSchema = new mongoose.Schema({
         type: Number,
         required: [true, "Please enter a valid room number between 1-999"],
     },
-        //NOTE: Room number is the "name" for the room. This is different from the longer and more complicated _id specified above.
+    //NOTE: Room number is the "name" for the room. This is different from the longer and more complicated _id specified above.
 
     type: {
         type: String,
@@ -96,7 +96,7 @@ const RoomSchema = new mongoose.Schema({
         required: [false]
     },
 
-}, {timestamps: true});
+}, { timestamps: true });
 
 const Room = mongoose.model('Room', RoomSchema)
 
