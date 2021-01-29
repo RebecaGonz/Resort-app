@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 var cors = require('cors')
-// const port = 8000;
+const port = 8000;
 const mongoUri = "mongodb://localhost/resort_db";
 
 //Code for the session & Auth
