@@ -26,7 +26,8 @@ function App() {
                 <MakeReservation path = "/makereservation" />
                 <MakeUser path = "/makeuser" />
                 <MakeRoom path = "/makeroom" />
-                <CancelReservation path="/cancel/:id" />
+                <CancelReservation path="/cancel/:id"/>
+
             </Router>
         </div>
     );

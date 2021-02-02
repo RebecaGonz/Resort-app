@@ -21,7 +21,7 @@ function MakeReservation() {
     const [roomsList, setRoomsList] = useState(null);
     const user_id = localStorage.getItem("userId");
 
-    
+    console.log(user_id);
     useEffect(() => {
         axios.get('http://localhost:8000/room/findAll')
             .then(response => { setRoomsList(response.data) })
@@ -66,133 +66,264 @@ function MakeReservation() {
             </div>);
     }
 
+    console.log("hereee", user_id)
     const availableRooms = roomsList.filter(isRoomAvailable)
+    if(user_id != null) {
+        return (
+            <>
+                <NavBar/>
+                <Hero back={backGround}
+                    title="Make a Reservation"
+                    desc="Choose your room and enjoy "
+                    btnText="RETURN HOME"
+                    btnTo="/rooms"
+                />
 
-    return (
-        <>
-            <NavBar/>
-            <Hero back={backGround}
-                title="Make a Reservation"
-                desc="Choose your date en enjoy "
-                btnText="RETURN HOME"
-                btnTo="/rooms"
-            />
+                {/* Display a calendar and all available rooms by date. */}
+                <div className="availableRooms">
+                    <h2 className="title">Select a date to see available rooms:</h2>
+                    <br></br>
+                    <div className="calendarDisplay">
+                        <Calendar className="calendarfont"
+                            onChange={calendarChange}
+                            value={date}
+                        />
+                    </div>
 
-            {/* Display a calendar and all available rooms by date. */}
-            <div className="availableRooms">
-                <h2 className="title">Select a date to see available rooms:</h2>
-                <br></br>
-                <div className="calendarDisplay">
-                    <Calendar className="calendarfont"
-                        onChange={calendarChange}
-                        value={date}
-                    />
+                    <div className="roomDisplay">
+                        {availableRooms.map((room, index) =>
+                            <div className="roomCard" key={index}>
+                                <img src={room.featured_image} width='100px' />
+                                <div className="roomInfo">
+                                    <h1>{room.type}</h1>
+                                    <table>
+                                        <tr>
+                                            <th>Max Capacity</th>
+                                            <th>Price</th>
+                                            <th>Smoking</th>
+                                            <th>Pets</th>
+                                        </tr>
+                                        <tr>
+                                            <td>{room.capacity}</td>
+                                            <td>{room.price}</td>
+                                            <td>{room.smoking ? "Yes" : "No"}</td>
+                                            <td>{room.pets ? "Yes" : "No"}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Twin Beds</th>
+                                            <th>Queen Beds</th>
+                                            <th>King Beds</th>
+                                            <th>Sofa Sleepers</th>
+                                        </tr>
+                                        <tr>
+                                            <td>{room.twin_beds}</td>
+                                            <td>{room.queen_beds}</td>
+                                            <td>{room.king_beds}</td>
+                                            <td>{room.sofa_sleeper}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Free Breakfast</th>
+                                            <th>Free Wifi</th>
+                                            <th>Free Parking</th>
+                                        </tr>
+                                        <tr>
+                                            <td>{room.breakfast_included ? "Yes" : "No"}</td>
+                                            <td>{room.wifi_included ? "Yes" : "No"}</td>
+                                            <td>{room.parking_included ? "Yes" : "No"}</td>
+                                        </tr>
+                                    </table>
+                                    <button
+                                        className="selectButton"
+                                        id={room._id}
+                                        onClick={event => setRoom_Id(event.target.id)}
+                                    >
+                                        Select Room
+                                    </button>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+    
                 </div>
-
-                <div className="roomDisplay">
-                    {availableRooms.map((room, index) =>
-                        <div className="roomCard" key={index}>
-                            <img src={room.featured_image} width='100px' />
-                            <div className="roomInfo">
-                                <h1>{room.type}</h1>
-                                <table>
-                                    <tr>
-                                        <th>Max Capacity</th>
-                                        <th>Price</th>
-                                        <th>Smoking</th>
-                                        <th>Pets</th>
-                                    </tr>
-                                    <tr>
-                                        <td>{room.capacity}</td>
-                                        <td>{room.price}</td>
-                                        <td>{room.smoking ? "Yes" : "No"}</td>
-                                        <td>{room.pets ? "Yes" : "No"}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Twin Beds</th>
-                                        <th>Queen Beds</th>
-                                        <th>King Beds</th>
-                                        <th>Sofa Sleepers</th>
-                                    </tr>
-                                    <tr>
-                                        <td>{room.twin_beds}</td>
-                                        <td>{room.queen_beds}</td>
-                                        <td>{room.king_beds}</td>
-                                        <td>{room.sofa_sleeper}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Free Breakfast</th>
-                                        <th>Free Wifi</th>
-                                        <th>Free Parking</th>
-                                    </tr>
-                                    <tr>
-                                        <td>{room.breakfast_included ? "Yes" : "No"}</td>
-                                        <td>{room.wifi_included ? "Yes" : "No"}</td>
-                                        <td>{room.parking_included ? "Yes" : "No"}</td>
-                                    </tr>
-                                </table>
-                                <button
-                                    className="selectButton"
-                                    id={room._id}
-                                    onClick={event => setRoom_Id(event.target.id)}
-                                >
-                                    Select Room
-                                </button>
+    
+                <div>
+                    <form onSubmit={handleSubmit}>
+                        {/* <input
+                            type="hidden"
+                            value={user_id}
+                            onChange={event => setUser_Id(event.target.value)}
+                        /> */}
+                        <br></br>
+                        <input
+                            type="hidden"
+                            value={room_id}
+                            onChange={event => setRoom_Id(event.target.value)}
+                        />
+                        <br></br>
+                        <div className="inputsReservation">
+                            <div>
+                                <label className="labelName">Adult RSVPs</label>
+                                <input
+                                    type="Number"
+                                    className="onlythisinput"
+                                    value={adult_rsvps}
+                                    onChange={event => setAdult_Rsvps(event.target.value)}
+                                />
+                            </div>
+                            <div>
+                                <label className="labelName">Child RSVPs:</label>
+                                <input
+                                    type="Number"
+                                    className="onlythisinput"
+                                    value={child_rsvps}
+                                    onChange={event => setChild_Rsvps(event.target.value)}
+                                />
                             </div>
                         </div>
-                    )}
+                        <button type="submit" className="selectButton">Make Reservation</button>
+                    </form>
                 </div>
-
-            </div>
-
-            <div>
-                <form onSubmit={handleSubmit}>
-                    {/* <input
-                        type="hidden"
-                        value={user_id}
-                        onChange={event => setUser_Id(event.target.value)}
-                    /> */}
+                <div>
+                    <ul>
+                        {validationErrors.map((error, index) =>
+                            <li key={index} style={{ color: "red" }}>
+                                {error}
+                            </li>
+                        )}
+                    </ul>
+                </div>
+            </>
+        )
+    }
+    console.log("user_id", user_id)
+    if(user_id == null) {
+        return (
+            <>
+                <NavBar/>
+                <Hero back={backGround}
+                    title="Make a Reservation"
+                    desc="Choose your date en enjoy "
+                    btnText="RETURN HOME"
+                    btnTo="/rooms"
+                />
+    
+                {/* Display a calendar and all available rooms by date. */}
+                <div className="availableRooms">
+                    <h2 className="title">Select a date to see available rooms:</h2>
                     <br></br>
-                    <input
-                        type="hidden"
-                        value={room_id}
-                        onChange={event => setRoom_Id(event.target.value)}
-                    />
-                    <br></br>
-                    <div className="inputsReservation">
-                        <div>
-                            <label className="labelName">Adult RSVPs</label>
-                            <input
-                                type="Number"
-                                className="onlythisinput"
-                                value={adult_rsvps}
-                                onChange={event => setAdult_Rsvps(event.target.value)}
-                            />
-                        </div>
-                        <div>
-                            <label className="labelName">Child RSVPs:</label>
-                            <input
-                                type="Number"
-                                className="onlythisinput"
-                                value={child_rsvps}
-                                onChange={event => setChild_Rsvps(event.target.value)}
-                            />
-                        </div>
+                    <div className="calendarDisplay">
+                        <Calendar className="calendarfont"
+                            onChange={calendarChange}
+                            value={date}
+                        />
                     </div>
-                    <button type="submit" className="selectButton">Make Reservation</button>
-                </form>
-            </div>
-            <div>
-                <ul>
-                    {validationErrors.map((error, index) =>
-                        <li key={index} style={{ color: "red" }}>
-                            {error}
-                        </li>
-                    )}
-                </ul>
-            </div>
-        </>
-    )
+    
+                    <div className="roomDisplay">
+                        {availableRooms.map((room, index) =>
+                            <div className="roomCard" key={index}>
+                                <img src={room.featured_image} width='100px' />
+                                <div className="roomInfo">
+                                    <h1>{room.type}</h1>
+                                    <table>
+                                        <tr>
+                                            <th>Max Capacity</th>
+                                            <th>Price</th>
+                                            <th>Smoking</th>
+                                            <th>Pets</th>
+                                        </tr>
+                                        <tr>
+                                            <td>{room.capacity}</td>
+                                            <td>{room.price}</td>
+                                            <td>{room.smoking ? "Yes" : "No"}</td>
+                                            <td>{room.pets ? "Yes" : "No"}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Twin Beds</th>
+                                            <th>Queen Beds</th>
+                                            <th>King Beds</th>
+                                            <th>Sofa Sleepers</th>
+                                        </tr>
+                                        <tr>
+                                            <td>{room.twin_beds}</td>
+                                            <td>{room.queen_beds}</td>
+                                            <td>{room.king_beds}</td>
+                                            <td>{room.sofa_sleeper}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Free Breakfast</th>
+                                            <th>Free Wifi</th>
+                                            <th>Free Parking</th>
+                                        </tr>
+                                        <tr>
+                                            <td>{room.breakfast_included ? "Yes" : "No"}</td>
+                                            <td>{room.wifi_included ? "Yes" : "No"}</td>
+                                            <td>{room.parking_included ? "Yes" : "No"}</td>
+                                        </tr>
+                                    </table>
+                                    <button
+                                        className="selectButton"
+                                        id={room._id}
+                                        onClick={event => setRoom_Id(event.target.id)}
+                                    >
+                                        Select Room
+                                    </button>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+    
+                </div>
+    
+                <div>
+                    <form onSubmit={handleSubmit}>
+                        {/* <input
+                            type="hidden"
+                            value={user_id}
+                            onChange={event => setUser_Id(event.target.value)}
+                        /> */}
+                        <br></br>
+                        <input
+                            type="hidden"
+                            value={room_id}
+                            onChange={event => setRoom_Id(event.target.value)}
+                        />
+                        <br></br>
+                        <div className="inputsReservation">
+                            <div>
+                                <label className="labelName">Adult RSVPs</label>
+                                <input
+                                    type="Number"
+                                    className="onlythisinput"
+                                    value={adult_rsvps}
+                                    onChange={event => setAdult_Rsvps(event.target.value)}
+                                />
+                            </div>
+                            <div>
+                                <label className="labelName">Child RSVPs:</label>
+                                <input
+                                    type="Number"
+                                    className="onlythisinput"
+                                    value={child_rsvps}
+                                    onChange={event => setChild_Rsvps(event.target.value)}
+                                />
+                            </div>
+                        </div>
+                        <button type="submit" onclick className="selectButton">Please Login</button>
+                    </form>
+                </div>
+                <div>
+                    <ul>
+                        {validationErrors.map((error, index) =>
+                            <li key={index} style={{ color: "red" }}>
+                                {error}
+                            </li>
+                        )}
+                    </ul>
+                </div>
+            </>
+        )
+    }
+
 }
 
 export default MakeReservation;

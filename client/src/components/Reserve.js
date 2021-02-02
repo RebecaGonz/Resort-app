@@ -19,7 +19,10 @@ function Reserve(props) {
                     <h6>Children: {children}</h6>
                 </div>
                 <div>
+
+
                     <button className="btn btn-link" type="button" onClick={() => handleCancel(reserveId) } >Free Cancelation</button>
+
                 </div>
             </div>
     )
