@@ -10,6 +10,7 @@ import ViewReservation from './views/ViewReservation';
 import MakeReservation from './views/MakeReservation'
 import MakeUser from './views/MakeUser'
 import MakeRoom from './views/MakeRoom'
+import CancelReservation from './views/CancelReservation'
 
 function App() {
     return (
@@ -25,6 +26,7 @@ function App() {
                 <MakeReservation path = "/makereservation" />
                 <MakeUser path = "/makeuser" />
                 <MakeRoom path = "/makeroom" />
+                <CancelReservation path="/cancel/:id"/>
             </Router>
         </div>
     );

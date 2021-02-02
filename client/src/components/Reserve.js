@@ -1,9 +1,15 @@
 import React from 'react';
 import styles from '../components/index.module.css';
-import { Link } from '@reach/router';
+import { Link, navigate } from '@reach/router';
 
 function Reserve(props) {
     const { reserveId, room, date, adult, children } = props;
+
+    function handleCancel(id){
+        return navigate("/cancel/"+id)
+    }
+
+
     return (
         <div className={styles.reservation}>
                 <div>
@@ -14,7 +20,7 @@ function Reserve(props) {
                     <h6>Children: {children}</h6>
                 </div>
                 <div>
-                    <Link to="cancel">Free Cancelation</Link>
+                <button className="btn btn-link" type="button" onClick={() => handleCancel(reserveId) } >Free Cancelation</button>
                 </div>
             </div>
     )

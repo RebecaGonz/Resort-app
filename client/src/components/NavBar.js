@@ -11,9 +11,10 @@ import userIcon from './images/userIcon.png'
 
 function NavBar() {
     const [isOpen, setOpen] = useState(false);
-    const [show, setShow] = useState(false);
+    const [show, setShow] = useState(null);
     const userName = localStorage.getItem("userName");
     const [errors, setErrors] = useState([]);
+
 
 
     const handleToggle = () => {
@@ -22,19 +23,21 @@ function NavBar() {
     // console.log(isOpen);
 
     const showList = () => {
-        setShow(!show)
         var dvSites = document.querySelector('#loginList');
-        if (show) {
+        console.log("I CLICK", show)
+        setShow(true)//SHOW=TRUE
+        console.log( "after state",show)
+        if(show) {
             dvSites.style.display = '';
+            setShow(false)
         }
-        else {
+        else if (!show){
             dvSites.style.display = 'none';
         }
     }
 
 
     const logoutUser = (e) => {
-        console.log("hizo click")
         e.preventDefault();
         axios.delete('http://localhost:8000/logout')
             .then(res => {
@@ -65,28 +68,21 @@ function NavBar() {
                             <Link to="/rooms">Rooms</Link>
                         </li>
                         <li>
-                            <img onClick={showList} src={userIcon} height="25px" width="25px"></img>
-                            <p style={{ position: "absolute", height: "25px", margin: '5px', display: 'inline-block' }}>{userName}</p>
-                            <div id="loginList" style={{ display: 'none' }}>
-                                <ul>
+                            <Link to="/makereservation">Make a Reservation</Link>
+                        </li>
+                        <li>
+                            <FaUserCircle onClick={showList} className={styles.userIcon}></FaUserCircle>
+                            {/* <img onClick={showList} src={userIcon} height="25px" width="25px"></img> */}
+                            <p style={{ position: "absolute", height: "25px", margin: '5px', display: 'inline-block' }} className={styles.userName}>{userName}</p>
+                            <div class={styles.loginList} id="loginList" style={{ display: 'none' }}>
+                                <ul className={styles.ulList}>
                                     <li> <Link to="/register">Login</Link></li>
                                     <li onClick={logoutUser}><a> Logout</a></li>
+                                    <li> <Link to="/reservation">My reservations</Link></li>
                                 </ul>
                             </div>
                         </li>
                     </ul>
-                    {/* <div className={styles.userDisplay}>
-                        <FaUserCircle onClick={showList} className={styles.userIcon}></FaUserCircle>
-                
-                        <div className={styles.userName}>{userName}</div>
-                    </div>
-                    
-                    <div className={styles.loginList}>
-                            <ul>
-                                <li> <Link to="/register">Login</Link></li>
-                                <li onClick={logoutUser}><a> Logout</a></li>
-                            </ul>
-                    </div> */}
                 </div>
             </nav>
         </div>
