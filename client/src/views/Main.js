@@ -12,7 +12,10 @@ function Main() {
     useEffect(() => {
         console.log("inside use effect");
         axios.get("http://localhost:8000/room/findAll")
-            .then(result => setRooms(result.data))
+            .then(result => {
+                console.log("all room here ",result.data);
+                setRooms(result.data)
+            })
             .catch(err => console.log(err));
     }, []);
     const services = [
@@ -39,7 +42,7 @@ function Main() {
     ];
     if (rooms === null) {
         return (
-            <p>Loading....</p>
+            <p>Loading Main....</p>
         )
     }
     else {

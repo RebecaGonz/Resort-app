@@ -9,7 +9,6 @@ function Reserve(props) {
         return navigate("/cancel/"+id)
     }
 
-
     return (
         <div className={styles.reservation}>
                 <div>
@@ -20,11 +19,13 @@ function Reserve(props) {
                     <h6>Children: {children}</h6>
                 </div>
                 <div>
-                <button className="btn btn-link" type="button" onClick={() => handleCancel(reserveId) } >Free Cancelation</button>
+
+
+                    <button className="btn btn-link" type="button" onClick={() => handleCancel(reserveId) } >Free Cancelation</button>
+
                 </div>
             </div>
     )
-
 }
 
 export default Reserve;

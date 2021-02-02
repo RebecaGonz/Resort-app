@@ -4,17 +4,18 @@ import styles from './index.module.css'
 import { FaAlignRight } from "react-icons/fa"
 import { FaUserCircle } from "react-icons/fa"
 import axios from 'axios';
-import Login from '../components/Login';
+// import Login from '../components/Login';
 import { navigate } from '@reach/router';
 import userIcon from './images/userIcon.png'
+import hotelLogo from './images/hotel-symbol.png'
+
 
 
 function NavBar() {
     const [isOpen, setOpen] = useState(false);
     const [show, setShow] = useState(null);
     const userName = localStorage.getItem("userName");
-    const [errors, setErrors] = useState([]);
-
+    // const [errors, setErrors] = useState([]);
 
 
     const handleToggle = () => {
@@ -36,7 +37,6 @@ function NavBar() {
         }
     }
 
-
     const logoutUser = (e) => {
         e.preventDefault();
         axios.delete('http://localhost:8000/logout')
@@ -46,15 +46,13 @@ function NavBar() {
             })
     }
 
-
-
     return (
         <div>
             <nav className={styles.navbar}>
                 <div className={styles.navCenter}>
                     <div className={styles.navHeader}>
                         <Link to="/home">
-                            <img src=''  />
+                            <img src={hotelLogo} height= "50px" width="100px" alt="hotel-logo" />
                         </Link>
                         <button type="button" className={styles.navBtn} onClick={handleToggle}>
                             <FaAlignRight className={styles.navIcon} />
@@ -76,6 +74,7 @@ function NavBar() {
                             <p style={{ position: "absolute", height: "25px", margin: '5px', display: 'inline-block' }} className={styles.userName}>{userName}</p>
                             <div class={styles.loginList} id="loginList" style={{ display: 'none' }}>
                                 <ul className={styles.ulList}>
+
                                     <li> <Link to="/register">Login</Link></li>
                                     <li onClick={logoutUser}><a> Logout</a></li>
                                     <li> <Link to="/reservation">My reservations</Link></li>
