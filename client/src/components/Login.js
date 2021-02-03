@@ -18,7 +18,10 @@ function Login() {
             .then(res => { 
                 localStorage.setItem("userName", res.data.name);
                 localStorage.setItem("userId", res.data.id);
-                navigate('/home')
+                if(localStorage.getItem('bookmark') != null){
+                    navigate(localStorage.getItem('bookmark'))
+                }
+                else navigate('/home')
         })
             .catch(err =>{
                 console.log( "error" , err.response.data)

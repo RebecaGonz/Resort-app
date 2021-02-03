@@ -1,8 +1,5 @@
-//NOTE: This page is intended for admins only. It is a developer tool.
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from '@reach/router';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import './ReservationStyle.css';
@@ -12,7 +9,6 @@ import backGround from '../components/images/reservation-page.jpg';
 import {navigate} from '@reach/router';
 
 function MakeReservation() {
-    // const [user_id, setUser_Id] = useState('');
     const [room_id, setRoom_Id] = useState('');
     const [date, setDate] = useState(new Date());
     const [adult_rsvps, setAdult_Rsvps] = useState(0);
@@ -21,7 +17,7 @@ function MakeReservation() {
     const [roomsList, setRoomsList] = useState(null);
     const user_id = localStorage.getItem("userId");
 
-    console.log(user_id);
+    console.log("User ID: " + user_id);
     useEffect(() => {
         axios.get('http://localhost:8000/room/findAll')
             .then(response => { setRoomsList(response.data) })
@@ -29,33 +25,38 @@ function MakeReservation() {
     }, []);
 
     function calendarChange(date) {
-        // var tempDate = date.getFullYear() + " " + (date.getMonth()+1) + " " + date.getDate()
         setDate(date);
-        // console.log("Temp Date: " + tempDate);
     }
 
 
     function handleSubmit(event) {
-        event.preventDefault();
-        axios.post(
-            'http://localhost:8000/reservation/create',
-            { user_id, room_id, date, adult_rsvps, child_rsvps }
-        ).then(response => {
-            navigate('/reservation')
-        }).catch(err => {
-            const errorMessages = err.response.data.errors;
-            const errorArray = [];
-            for (const error in errorMessages) {
-                errorArray.push(errorMessages[error].message)
-            }
-            setValidationErrors(errorArray);
-            console.log(err);
-        })
+        if(user_id){ 
+            event.preventDefault();
+            axios.post(
+                'http://localhost:8000/reservation/create',
+                { user_id, room_id, date, adult_rsvps, child_rsvps }
+            ).then( () => {navigate('/reservation')})
+            .catch(err => {
+                const errorMessages = err.response.data.errors;
+                const errorArray = [];
+                for (const error in errorMessages) {
+                    errorArray.push(errorMessages[error].message)
+                }
+                setValidationErrors(errorArray);
+                console.log(err);
+            })
+        }
+        else{
+            event.preventDefault()
+            alert('Please log in before proceeding.');
+            localStorage.setItem('bookmark', '/makereservation'  )
+            navigate('/register');
+        }
     }
 
     const isRoomAvailable = room => {
         let index = room.dates_in_use.findIndex(inUse => inUse.startsWith(date.toISOString().substring(0, 10)));
-        if (index == -1) return true;
+        if (index === -1) return true;
         else return false;
     }
 
@@ -68,17 +69,17 @@ function MakeReservation() {
 
     console.log("hereee", user_id)
     const availableRooms = roomsList.filter(isRoomAvailable)
-    if(user_id != null) {
+
         return (
             <>
                 <NavBar/>
                 <Hero back={backGround}
                     title="Make a Reservation"
-                    desc="Choose your room and enjoy "
+                    desc="Choose your date and enjoy."
                     btnText="RETURN HOME"
                     btnTo="/rooms"
                 />
-
+    
                 {/* Display a calendar and all available rooms by date. */}
                 <div className="availableRooms">
                     <h2 className="title">Select a date to see available rooms:</h2>
@@ -89,11 +90,11 @@ function MakeReservation() {
                             value={date}
                         />
                     </div>
-
+    
                     <div className="roomDisplay">
                         {availableRooms.map((room, index) =>
                             <div className="roomCard" key={index}>
-                                <img src={room.featured_image} width='100px' />
+                                <img src={room.featured_image} width='100px' alt="Make a hotel reservation."/>
                                 <div className="roomInfo">
                                     <h1>{room.type}</h1>
                                     <table>
@@ -148,11 +149,6 @@ function MakeReservation() {
     
                 <div>
                     <form onSubmit={handleSubmit}>
-                        {/* <input
-                            type="hidden"
-                            value={user_id}
-                            onChange={event => setUser_Id(event.target.value)}
-                        /> */}
                         <br></br>
                         <input
                             type="hidden"
@@ -180,7 +176,7 @@ function MakeReservation() {
                                 />
                             </div>
                         </div>
-                        <button type="submit" className="selectButton">Make Reservation</button>
+                        <button type="submit" onclick className="selectButton">Make Reservation</button>
                     </form>
                 </div>
                 <div>
@@ -195,135 +191,5 @@ function MakeReservation() {
             </>
         )
     }
-    console.log("user_id", user_id)
-    if(user_id == null) {
-        return (
-            <>
-                <NavBar/>
-                <Hero back={backGround}
-                    title="Make a Reservation"
-                    desc="Choose your date en enjoy "
-                    btnText="RETURN HOME"
-                    btnTo="/rooms"
-                />
-    
-                {/* Display a calendar and all available rooms by date. */}
-                <div className="availableRooms">
-                    <h2 className="title">Select a date to see available rooms:</h2>
-                    <br></br>
-                    <div className="calendarDisplay">
-                        <Calendar className="calendarfont"
-                            onChange={calendarChange}
-                            value={date}
-                        />
-                    </div>
-    
-                    <div className="roomDisplay">
-                        {availableRooms.map((room, index) =>
-                            <div className="roomCard" key={index}>
-                                <img src={room.featured_image} width='100px' />
-                                <div className="roomInfo">
-                                    <h1>{room.type}</h1>
-                                    <table>
-                                        <tr>
-                                            <th>Max Capacity</th>
-                                            <th>Price</th>
-                                            <th>Smoking</th>
-                                            <th>Pets</th>
-                                        </tr>
-                                        <tr>
-                                            <td>{room.capacity}</td>
-                                            <td>{room.price}</td>
-                                            <td>{room.smoking ? "Yes" : "No"}</td>
-                                            <td>{room.pets ? "Yes" : "No"}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Twin Beds</th>
-                                            <th>Queen Beds</th>
-                                            <th>King Beds</th>
-                                            <th>Sofa Sleepers</th>
-                                        </tr>
-                                        <tr>
-                                            <td>{room.twin_beds}</td>
-                                            <td>{room.queen_beds}</td>
-                                            <td>{room.king_beds}</td>
-                                            <td>{room.sofa_sleeper}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Free Breakfast</th>
-                                            <th>Free Wifi</th>
-                                            <th>Free Parking</th>
-                                        </tr>
-                                        <tr>
-                                            <td>{room.breakfast_included ? "Yes" : "No"}</td>
-                                            <td>{room.wifi_included ? "Yes" : "No"}</td>
-                                            <td>{room.parking_included ? "Yes" : "No"}</td>
-                                        </tr>
-                                    </table>
-                                    <button
-                                        className="selectButton"
-                                        id={room._id}
-                                        onClick={event => setRoom_Id(event.target.id)}
-                                    >
-                                        Select Room
-                                    </button>
-                                </div>
-                            </div>
-                        )}
-                    </div>
-    
-                </div>
-    
-                <div>
-                    <form onSubmit={handleSubmit}>
-                        {/* <input
-                            type="hidden"
-                            value={user_id}
-                            onChange={event => setUser_Id(event.target.value)}
-                        /> */}
-                        <br></br>
-                        <input
-                            type="hidden"
-                            value={room_id}
-                            onChange={event => setRoom_Id(event.target.value)}
-                        />
-                        <br></br>
-                        <div className="inputsReservation">
-                            <div>
-                                <label className="labelName">Adult RSVPs</label>
-                                <input
-                                    type="Number"
-                                    className="onlythisinput"
-                                    value={adult_rsvps}
-                                    onChange={event => setAdult_Rsvps(event.target.value)}
-                                />
-                            </div>
-                            <div>
-                                <label className="labelName">Child RSVPs:</label>
-                                <input
-                                    type="Number"
-                                    className="onlythisinput"
-                                    value={child_rsvps}
-                                    onChange={event => setChild_Rsvps(event.target.value)}
-                                />
-                            </div>
-                        </div>
-                        <button type="submit" onclick className="selectButton">Please Login</button>
-                    </form>
-                </div>
-                <div>
-                    <ul>
-                        {validationErrors.map((error, index) =>
-                            <li key={index} style={{ color: "red" }}>
-                                {error}
-                            </li>
-                        )}
-                    </ul>
-                </div>
-            </>
-        )
-    }
-
-}
 
 export default MakeReservation;
