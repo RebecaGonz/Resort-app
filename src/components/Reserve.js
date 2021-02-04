@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from '../components/index.module.css';
-import { Link, navigate } from '@reach/router';
+import { navigate } from '@reach/router';
 
 function Reserve(props) {
     const { reserveId, room, date, adult, children } = props;
@@ -12,7 +12,8 @@ function Reserve(props) {
     return (
         <div className={styles.reservation}>
                 <div>
-                    <h3>Reservation ID: {reserveId}</h3><br></br>
+                    <h3>Reservation ID: {reserveId}</h3>
+                    <br></br>
                     <h6>Room: {room}</h6>
                     <h6>Date: {date.toString()}</h6>
                     <h6>Adults: {adult}</h6>

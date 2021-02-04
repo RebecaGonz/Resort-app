@@ -30,12 +30,6 @@ mongoose.connect(mongoUri, {
     .then(() => console.log("MongoDB connected..."))
     .catch((err) => console.log("Database error", err));
 
-// setting up connect-mongodb-session store
-// const mongoStore = new MongoDBStore({
-//     uri: mongoUri,
-//     collection: "mySessions"
-// });
-
 // Express Bodyparser
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -54,15 +48,8 @@ app.use(session({
     }
 }));
 
-
-
-// require('./config/mongoose.config');
-// app.use(express.json());
-// app.use(express.urlencoded({ extended: true }));
-//app.use(cors());
 app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
 require('./routes/resort_routes')(app);
-// require('./routes/user')(app);
 
 app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
-// app.listen(port, () => console.log(`Listening on port: ${port}`));
+

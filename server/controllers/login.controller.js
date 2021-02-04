@@ -1,5 +1,4 @@
 const User = require('../models/user.model')
-// const RegisterUser = require('../models/login.model')
 const bcrypt = require("bcrypt");
 const { COOKIE_NAME } = require('../config/config');
 
@@ -77,7 +76,9 @@ module.exports.logoutUser = (req, res) => {
     req.session.destroy((err) => {
         // delete session data from store, using sessionID in cookie
         if (err) throw err;
+        console.log("Cookie before" + COOKIE_NAME)
         res.clearCookie(COOKIE_NAME); // clears cookie containing expired sessionID
+        console.log("Cookie after" + COOKIE_NAME)
         res.send("Logged out successfully");
     });
 }

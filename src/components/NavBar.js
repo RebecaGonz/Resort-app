@@ -6,7 +6,6 @@ import { FaUserCircle } from "react-icons/fa"
 import axios from 'axios';
 // import Login from '../components/Login';
 import { navigate } from '@reach/router';
-import userIcon from './images/userIcon.png'
 import hotelLogo from './images/hotel-symbol.png'
 
 
@@ -41,7 +40,8 @@ function NavBar() {
         e.preventDefault();
         axios.delete('http://localhost:8000/logout')
             .then(res => {
-                localStorage.setItem("userName", "Guest")
+                localStorage.clear();
+                localStorage.setItem("userName", "Guest");
                 navigate('/home')
             })
     }
